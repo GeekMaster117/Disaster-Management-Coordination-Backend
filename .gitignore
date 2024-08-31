@@ -3,6 +3,11 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
+#ng, npm and npx
+ng.*
+npm.*
+npx.*
+
 # User-specific files
 *.rsuser
 *.suo
