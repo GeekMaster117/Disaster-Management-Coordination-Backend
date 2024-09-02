@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using Microsoft.IdentityModel.Tokens;
 using AuthenticationAPI.Models;
 using Azure;
+using AuthenticationAPI.Services.JwtManager;
 
 namespace AuthenticationAPI.Services.AuthenticationManager
 {
@@ -17,16 +18,16 @@ namespace AuthenticationAPI.Services.AuthenticationManager
     {
         private readonly UserManager<IdentityUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
-        private readonly IConfiguration _configuration;
+        private readonly IJwtManager _jwtManager;
 
         public AuthenticationManager(
             UserManager<IdentityUser> userManager,
             RoleManager<IdentityRole> roleManager,
-            IConfiguration configuration)
+            IJwtManager jwtManager)
         {
             _userManager = userManager;
             _roleManager = roleManager;
-            _configuration = configuration;
+            _jwtManager = jwtManager;
         }
 
         public async Task<ResponseDTO> RegisterAdmin(RegisterDTO model)
@@ -82,7 +83,7 @@ namespace AuthenticationAPI.Services.AuthenticationManager
                     authClaims.Add(new Claim(ClaimTypes.Role, userRole));
                 }
 
-                var token = GetToken(authClaims);
+                var token = _jwtManager.GetToken(authClaims);
 
                 return new()
                 {
@@ -95,19 +96,6 @@ namespace AuthenticationAPI.Services.AuthenticationManager
                 StatusCode = ResponseMessages.Unauthorized.StatusCode,
                 Message = ResponseMessages.Unauthorized.Message
             };
-        }
-
-        private JwtSecurityToken GetToken(List<Claim> authClaims)
-        {
-            var authSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JWT:Secret"]));
-
-            return new JwtSecurityToken(
-                issuer: _configuration["JWT:ValidIssuer"],
-                audience: _configuration["JWT:ValidAudience"],
-                expires: DateTime.Now.AddHours(3),
-                claims: authClaims,
-                signingCredentials: new SigningCredentials(authSigningKey, SecurityAlgorithms.HmacSha256)
-                );
         }
     }
 }
