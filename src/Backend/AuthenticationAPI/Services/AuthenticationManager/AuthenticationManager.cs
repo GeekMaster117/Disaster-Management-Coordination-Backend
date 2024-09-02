@@ -72,7 +72,14 @@ namespace AuthenticationAPI.Services.AuthenticationManager
             {
                 var userRoles = await _userManager.GetRolesAsync(user);
 
-                var authClaims = new List<Claim>
+                if(!userRoles.Contains(UserRoles.Admin))
+					return new()
+					{
+						StatusCode = ResponseMessages.Unauthorized.StatusCode,
+						Message = ResponseMessages.Unauthorized.Message
+					};
+
+				var authClaims = new List<Claim>
                 {
                     new Claim(ClaimTypes.Name, user.UserName),
                     new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
@@ -88,7 +95,8 @@ namespace AuthenticationAPI.Services.AuthenticationManager
                 return new()
                 {
                     StatusCode = ResponseMessages.Success.StatusCode,
-                    Message = ResponseMessages.Success.Message
+                    Message = "Token: " + new JwtSecurityTokenHandler().WriteToken(token) + 
+                    "Expiry: " + token.ValidTo.ToString()
                 };
             }
             return new()
