@@ -30,11 +30,15 @@ namespace AuthAPI.Services
             _configuration = configuration;
         }
 
-        public async Task<IActionResult> RegisterAdmin(RegisterDTO model)
+        public async Task<ResponseDTO> RegisterAdmin(RegisterDTO model)
         {
             var userExists = await _userManager.FindByNameAsync(model.Username);
             if (userExists != null)
-                return new StatusCodeResult(StatusCodes.Status500InternalServerError);
+                return new()
+                {
+                    StatusCode = ResponseMessages.InternalServerError.StatusCode,
+                    Message = ResponseMessages.InternalServerError.Message
+                };
 
             IdentityUser user = new()
             {
@@ -43,14 +47,22 @@ namespace AuthAPI.Services
             };
             var result = await _userManager.CreateAsync(user, model.Password);
             if (!result.Succeeded)
-                return new StatusCodeResult(StatusCodes.Status500InternalServerError);
+				return new()
+				{
+					StatusCode = ResponseMessages.InternalServerError.StatusCode,
+					Message = ResponseMessages.InternalServerError.Message
+				};
 
-            if (!await _roleManager.RoleExistsAsync(UserRoles.Admin))
+			if (!await _roleManager.RoleExistsAsync(UserRoles.Admin))
                 await _roleManager.CreateAsync(new IdentityRole(UserRoles.Admin));
 
             await _userManager.AddToRoleAsync(user, UserRoles.Admin);
 
-            return new OkObjectResult(new AuthenticationAPI.Models.Response { Status = "Success", Message = "Admin registered successfully!" });
+            return new()
+            {
+                StatusCode = ResponseMessages.Success.StatusCode,
+                Message = ResponseMessages.Success.Message
+            };
         }
 
         public async Task<IActionResult> LoginAdmin(LoginDTO model)

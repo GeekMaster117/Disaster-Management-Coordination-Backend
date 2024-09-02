@@ -11,7 +11,7 @@
 		public class Success
 		{
 			public const int StatusCode = 200;
-			public string Message { get; set; } = "";
+			public const string Message = "Request Successful";
 		}
 	}
 }
