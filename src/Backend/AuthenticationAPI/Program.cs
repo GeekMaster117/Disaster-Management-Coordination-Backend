@@ -1,4 +1,5 @@
 using AuthenticationAPI.Data;
+using AuthenticationAPI.Models;
 using AuthenticationAPI.Services.AuthenticationManager;
 using AuthenticationAPI.Services.JwtManager;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -17,7 +18,8 @@ builder.Services.AddDbContext<AuthenticationDbContext>(options =>
 {
 	options.UseSqlServer(builder.Configuration.GetConnectionString("UserDB"));
 });
-builder.Services.AddIdentity<IdentityUser, IdentityRole>()
+
+builder.Services.AddIdentity<IdentityUserCustom, IdentityRole>()
     .AddEntityFrameworkStores<AuthenticationDbContext>()
     .AddDefaultTokenProviders();
 

@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace AuthenticationAPI.Migrations
 {
     /// <inheritdoc />
-    public partial class Initial : Migration
+    public partial class AddFirstNameLastName : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -30,6 +30,8 @@ namespace AuthenticationAPI.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -163,8 +165,8 @@ namespace AuthenticationAPI.Migrations
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
-                columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "1", 0, "8ea40bd0-e4ed-4e39-bf3f-4677be41eebc", null, false, false, null, null, "ADMIN", "AQAAAAIAAYagAAAAEF/t0lRBA6+52cvhaPMSK9e0q7VgFnojZg9pljFaUIQyTTU4zStxHkvcQd/+QzDglw==", null, false, "8f91f83a-a48f-4579-8970-5dffb5fa2945", false, "admin" });
+                columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
+                values: new object[] { "1", 0, "cf00de5e-1153-46cf-b941-1747704b507c", null, false, "", "", false, null, null, "ADMIN", "AQAAAAIAAYagAAAAEDxNb7banVAXXc1DskFyr+Ctm7XWYg6JOrvfvru1nwjH/kDcb0lgMMuvLmaElvT4rg==", null, false, "a7cb0027-eb05-4d22-a22a-7d0ebe580882", false, "admin" });
 
             migrationBuilder.InsertData(
                 table: "AspNetUserRoles",

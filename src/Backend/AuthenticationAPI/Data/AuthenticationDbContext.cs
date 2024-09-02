@@ -6,18 +6,18 @@ using Microsoft.EntityFrameworkCore;
 namespace AuthenticationAPI.Data
 {
 	public class AuthenticationDbContext(DbContextOptions<AuthenticationDbContext> options)
-		: IdentityDbContext<IdentityUser>(options)
+		: IdentityDbContext<IdentityUserCustom>(options)
 	{
 		protected override void OnModelCreating(ModelBuilder builder)
 		{
 			base.OnModelCreating(builder);
-			builder.Entity<IdentityUser>().HasData(
-				new IdentityUser
+			builder.Entity<IdentityUserCustom>().HasData(
+				new IdentityUserCustom
 				{
 					Id = "1",
 					UserName = "admin",
 					NormalizedUserName = "ADMIN",
-					PasswordHash = new PasswordHasher<IdentityUser>().HashPassword(null, "admin")
+					PasswordHash = new PasswordHasher<IdentityUserCustom>().HashPassword(null, "admin")
 				});
 			builder.Entity<IdentityRole>().HasData(
 				new IdentityRole
