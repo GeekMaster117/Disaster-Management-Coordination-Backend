@@ -101,8 +101,8 @@ namespace AuthenticationAPI.Services.AuthenticationManager
             }
             return new()
             {
-                StatusCode = ResponseMessages.Unauthorized.StatusCode,
-                Message = ResponseMessages.Unauthorized.Message
+                StatusCode = ResponseMessages.IncorrectCredentials.StatusCode,
+                Message = ResponseMessages.IncorrectCredentials.Message
             };
         }
     }
