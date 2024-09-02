@@ -1,7 +1,7 @@
 ﻿using AuthenticationAPI.Models;
 using Microsoft.AspNetCore.Mvc;
 
-namespace AuthenticationAPI.Services
+namespace AuthenticationAPI.Services.AuthenticationManager
 {
     public interface IAuthenticationManager
     {

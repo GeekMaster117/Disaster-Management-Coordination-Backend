@@ -9,10 +9,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.IdentityModel.Tokens;
 using AuthenticationAPI.Models;
-using AuthenticationAPI.Services;
 using Azure;
 
-namespace AuthAPI.Services
+namespace AuthenticationAPI.Services.AuthenticationManager
 {
     public class AuthenticationManager : IAuthenticationManager
     {
@@ -47,13 +46,13 @@ namespace AuthAPI.Services
             };
             var result = await _userManager.CreateAsync(user, model.Password);
             if (!result.Succeeded)
-				return new()
-				{
-					StatusCode = ResponseMessages.InternalServerError.StatusCode,
-					Message = ResponseMessages.InternalServerError.Message
-				};
+                return new()
+                {
+                    StatusCode = ResponseMessages.InternalServerError.StatusCode,
+                    Message = ResponseMessages.InternalServerError.Message
+                };
 
-			if (!await _roleManager.RoleExistsAsync(UserRoles.Admin))
+            if (!await _roleManager.RoleExistsAsync(UserRoles.Admin))
                 await _roleManager.CreateAsync(new IdentityRole(UserRoles.Admin));
 
             await _userManager.AddToRoleAsync(user, UserRoles.Admin);
