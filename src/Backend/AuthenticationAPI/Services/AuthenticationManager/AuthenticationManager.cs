@@ -36,8 +36,8 @@ namespace AuthenticationAPI.Services.AuthenticationManager
             if (userExists != null)
                 return new()
                 {
-                    StatusCode = ResponseMessages.InternalServerError.StatusCode,
-                    Message = ResponseMessages.InternalServerError.Message
+                    StatusCode = ResponseMessages.BadRequest.StatusCode,
+                    Message = "Username already exists"
                 };
 
             IdentityUser user = new()
@@ -101,8 +101,8 @@ namespace AuthenticationAPI.Services.AuthenticationManager
             }
             return new()
             {
-                StatusCode = ResponseMessages.IncorrectCredentials.StatusCode,
-                Message = ResponseMessages.IncorrectCredentials.Message
+                StatusCode = ResponseMessages.BadRequest.StatusCode,
+                Message = "Username or Password is incorrect"
             };
         }
     }
