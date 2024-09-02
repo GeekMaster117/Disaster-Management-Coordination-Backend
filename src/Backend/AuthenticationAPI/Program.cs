@@ -1,4 +1,6 @@
 using AuthenticationAPI.Data;
+using AuthenticationAPI.Services.AuthenticationManager;
+using AuthenticationAPI.Services.JwtManager;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -7,6 +9,9 @@ using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
+builder.Services.AddControllers();
+builder.Services.AddScoped<IAuthenticationManager, AuthenticationManager>();
+builder.Services.AddScoped<IJwtManager, JwtManager>();
 
 builder.Services.AddDbContext<AuthenticationDbContext>(options =>
 {
@@ -37,8 +42,6 @@ builder.Services.AddAuthentication(options =>
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JWT:Secret"]))
     };
 });
-
-builder.Services.AddControllers();
 
 var app = builder.Build();
 app.UseAuthentication();
