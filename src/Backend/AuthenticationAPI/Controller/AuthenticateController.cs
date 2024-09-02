@@ -26,7 +26,7 @@ namespace AuthenticationAPI.Controller
         }
 
         [HttpPost]
-        [Route("login")]
+        [Route("login/admin")]
         public async Task<IActionResult> LoginAdmin([FromBody] LoginDTO model)
         {
             var response = await _authService.LoginAdmin(model);
