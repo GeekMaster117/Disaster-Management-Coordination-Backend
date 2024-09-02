@@ -96,7 +96,7 @@ namespace AuthenticationAPI.Services.AuthenticationManager
                 {
                     StatusCode = ResponseMessages.Success.StatusCode,
                     Message = "Token: " + new JwtSecurityTokenHandler().WriteToken(token) + 
-                    "Expiry: " + token.ValidTo.ToString()
+                    "\nExpiry: " + token.ValidTo.ToString()
                 };
             }
             return new()
