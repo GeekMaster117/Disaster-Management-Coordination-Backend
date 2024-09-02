@@ -8,10 +8,16 @@
 			public const string Message = "Something went wrong :(";
 		}
 
-		public class Success
+		public static class Success
 		{
 			public const int StatusCode = 200;
 			public const string Message = "Request Successful";
 		}
-	}
+
+        public static class Unauthorized
+        {
+			public const int StatusCode = 403;
+			public const string Message = "Unauthorized";
+        }
+    }
 }

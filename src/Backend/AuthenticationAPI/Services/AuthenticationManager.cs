@@ -65,7 +65,7 @@ namespace AuthAPI.Services
             };
         }
 
-        public async Task<IActionResult> LoginAdmin(LoginDTO model)
+        public async Task<ResponseDTO> LoginAdmin(LoginDTO model)
         {
             var user = await _userManager.FindByNameAsync(model.Username);
             if (user != null && await _userManager.CheckPasswordAsync(user, model.Password))
@@ -85,13 +85,17 @@ namespace AuthAPI.Services
 
                 var token = GetToken(authClaims);
 
-                return new OkObjectResult(new
+                return new()
                 {
-                    token = new JwtSecurityTokenHandler().WriteToken(token),
-                    expiration = token.ValidTo
-                });
+                    StatusCode = ResponseMessages.Success.StatusCode,
+                    Message = ResponseMessages.Success.Message
+                };
             }
-            return new UnauthorizedResult();
+            return new()
+            {
+                StatusCode = ResponseMessages.Unauthorized.StatusCode,
+                Message = ResponseMessages.Unauthorized.Message
+            };
         }
 
         private JwtSecurityToken GetToken(List<Claim> authClaims)
