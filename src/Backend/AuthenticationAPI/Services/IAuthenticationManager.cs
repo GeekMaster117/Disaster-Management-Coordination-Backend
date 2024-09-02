@@ -6,6 +6,6 @@ namespace AuthenticationAPI.Services
     public interface IAuthenticationManager
     {
         Task<IActionResult> RegisterAdmin(RegisterDTO model);
-        Task<IActionResult> GetAllUsers();
+        Task<IActionResult> LoginAdmin(LoginDTO model);
     }
 }
