@@ -8,6 +8,5 @@ namespace AuthenticationAPI.Data
 	public class AuthenticationDbContext(DbContextOptions<AuthenticationDbContext> options)
 		: IdentityDbContext<IdentityUser>(options)
 	{
-		DbSet<Volunteer> Volunteer { get; set; }
 	}
 }
