@@ -3,6 +3,7 @@ using AuthenticationAPI.Services.AuthenticationManager;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.IdentityModel.Tokens.Jwt;
 
 namespace AuthenticationAPI.Controller
 {
@@ -16,18 +17,20 @@ namespace AuthenticationAPI.Controller
             _authService = authService;
         }
         [HttpPost]
-        [Route("register-admin")]
+        [Route("register/admin")]
         [Authorize(Roles = UserRoles.Admin)] // Only admins can register other admins
-        public Task<IActionResult> RegisterAdmin([FromBody] RegisterDTO model)
+        public async Task<IActionResult> RegisterAdmin([FromBody] RegisterDTO model)
         {
-            return _authService.RegisterAdmin(model);
+            var response = await _authService.RegisterAdmin(model);
+            return StatusCode(response.StatusCode, response.Message);
         }
 
         [HttpPost]
-        [Route("login-admin")]
-        public Task<IActionResult> LoginAdmin([FromBody] LoginDTO model)
+        [Route("login")]
+        public async Task<IActionResult> LoginAdmin([FromBody] LoginDTO model)
         {
-            return _authService.LoginAdmin(model);
+            var response = await _authService.LoginAdmin(model);
+            return StatusCode(response.StatusCode, response.Message);
         }
     }
 }
