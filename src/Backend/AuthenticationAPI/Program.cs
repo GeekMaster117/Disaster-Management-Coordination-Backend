@@ -19,7 +19,7 @@ builder.Services.AddDbContext<AuthenticationDbContext>(options =>
 	options.UseSqlServer(builder.Configuration.GetConnectionString("UserDB"));
 });
 
-builder.Services.AddIdentity<IdentityUserCustom, IdentityRole>()
+builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
     .AddEntityFrameworkStores<AuthenticationDbContext>()
     .AddDefaultTokenProviders();
 

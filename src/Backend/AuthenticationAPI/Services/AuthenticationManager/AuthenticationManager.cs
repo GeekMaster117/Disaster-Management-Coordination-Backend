@@ -16,12 +16,12 @@ namespace AuthenticationAPI.Services.AuthenticationManager
 {
     public class AuthenticationManager : IAuthenticationManager
     {
-        private readonly UserManager<IdentityUserCustom> _userManager;
+        private readonly UserManager<ApplicationUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly IJwtManager _jwtManager;
 
         public AuthenticationManager(
-            UserManager<IdentityUserCustom> userManager,
+            UserManager<ApplicationUser> userManager,
             RoleManager<IdentityRole> roleManager,
             IJwtManager jwtManager)
         {
@@ -40,7 +40,7 @@ namespace AuthenticationAPI.Services.AuthenticationManager
                     Message = "Username already exists"
                 };
 
-            IdentityUserCustom user = new()
+            ApplicationUser user = new()
             {
                 UserName = model.Username,
                 FirstName = model.Firstname,
