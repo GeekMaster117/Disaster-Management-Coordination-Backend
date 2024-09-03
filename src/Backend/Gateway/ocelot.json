@@ -1,0 +1,35 @@
+{
+  "Routes": [
+    {
+      "DownstreamPathTemplate": "/register/admin",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5000
+        }
+
+      ],
+      "UpstreamPathTemplate": "/register/admin",
+      "UpstreamHttpMethod": [ "Post" ]
+
+    },
+    {
+      "DownstreamPathTemplate": "/login/admin",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5000
+        }
+
+      ],
+      "UpstreamPathTemplate": "/login/admin",
+      "UpstreamHttpMethod": [ "Post" ]
+
+    }
+  ],
+  "GlobalConfiguration": {
+    "BaseUrl": "http://localhost:3000"
+  }
+}
