@@ -21,7 +21,7 @@ namespace AuthenticationAPI.Controller
         public async Task<IActionResult> RegisterAdmin([FromBody] RegisterDTO model)
         {
             var response = await _authService.RegisterAdmin(model);
-            return StatusCode(response.StatusCode, response.Message);
+            return StatusCode(response.StatusCode, response);
         }
 
         [HttpPost]
@@ -29,7 +29,7 @@ namespace AuthenticationAPI.Controller
         public async Task<IActionResult> LoginAdmin([FromBody] LoginDTO model)
         {
             var response = await _authService.LoginAdmin(model);
-            return StatusCode(response.StatusCode, response.Message);
+            return StatusCode(response.StatusCode, response);
         }
     }
 }

@@ -46,10 +46,17 @@ builder.Services.AddAuthentication(options =>
 });
 
 var app = builder.Build();
+
+// Configure the HTTP request pipeline.
+
+app.UseCors(configurePolicy =>
+{
+	configurePolicy.AllowAnyOrigin();
+    configurePolicy.AllowAnyHeader();
+	configurePolicy.AllowAnyMethod();
+});
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
-
-// Configure the HTTP request pipeline.
 
 app.Run();

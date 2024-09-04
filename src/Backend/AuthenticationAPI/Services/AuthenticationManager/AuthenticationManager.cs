@@ -63,7 +63,7 @@ namespace AuthenticationAPI.Services.AuthenticationManager
             return new()
             {
                 StatusCode = ResponseMessages.Success.StatusCode,
-                Message = ResponseMessages.Success.Message
+                Message = "Admin Registered"
             };
         }
 
@@ -97,8 +97,11 @@ namespace AuthenticationAPI.Services.AuthenticationManager
                 return new()
                 {
                     StatusCode = ResponseMessages.Success.StatusCode,
-                    Message = "Token: " + new JwtSecurityTokenHandler().WriteToken(token) + 
-                    "\nExpiry: " + token.ValidTo.ToString()
+                    Message = new LoginResponseDTO()
+                    {
+                        Token = new JwtSecurityTokenHandler().WriteToken(token),
+                        Expiry = token.ValidTo
+                    }
                 };
             }
             return new()
