@@ -2,6 +2,9 @@ using AuthenticationAPI.Data;
 using AuthenticationAPI.Models;
 using AuthenticationAPI.Services.AuthenticationManager;
 using AuthenticationAPI.Services.JwtManager;
+using AuthenticationAPI.Validators;
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -44,6 +47,14 @@ builder.Services.AddAuthentication(options =>
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JWT:Secret"]))
     };
 });
+
+builder.Services
+    .AddFluentValidationAutoValidation()
+    .AddFluentValidationClientsideAdapters();
+
+builder.Services.AddScoped<IValidator<LoginDTO>, LoginDTOValidator>();
+builder.Services.AddScoped<IValidator<RegisterDTO>, RegisterDTOValidator>();
+
 
 var app = builder.Build();
 
