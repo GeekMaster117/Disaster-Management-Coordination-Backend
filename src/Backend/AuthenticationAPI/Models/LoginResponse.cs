@@ -1,6 +1,6 @@
 ﻿namespace AuthenticationAPI.Models
 {
-	public class LoginResponseDTO
+	public class LoginResponse
 	{
 		public string Token { get; set; } = "";
 		public DateTime Expiry { get; set; }
