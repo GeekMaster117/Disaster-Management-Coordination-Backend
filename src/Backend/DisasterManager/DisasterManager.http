@@ -1,0 +1,6 @@
+@DisasterManager_HostAddress = http://localhost:5156
+
+GET {{DisasterManager_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
