@@ -21,7 +21,8 @@ namespace DisasterManager.Services.RefugeeCampService.Commands.CreateRefugeeCamp
 				};
 			RefugeeCamp refugeeCamp = request.Adapt<RefugeeCamp>();
 			refugeeCamp.Area = affectedArea;
-			await _context.RefugeeCamps.AddAsync(refugeeCamp);
+			await _context.RefugeeCamps.AddAsync(refugeeCamp, cancellationToken);
+			await _context.SaveChangesAsync(cancellationToken);
 			return new()
 			{
 				StatusCode = DefaultMessages.Success.StatusCode,
