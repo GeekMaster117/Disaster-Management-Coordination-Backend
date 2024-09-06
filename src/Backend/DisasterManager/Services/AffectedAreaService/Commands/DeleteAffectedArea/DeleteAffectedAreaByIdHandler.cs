@@ -3,7 +3,7 @@ using DisasterManager.Models;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
-namespace DisasterManager.Services.AffectedAreaService.DeleteAffectedArea
+namespace DisasterManager.Services.AffectedAreaService.Commands.DeleteAffectedArea
 {
     public class DeleteAffectedAreaByIdHandler(DisasterManagerDbContext context) : IRequestHandler<DeleteAffectedAreaByIdCommand, bool>
     {

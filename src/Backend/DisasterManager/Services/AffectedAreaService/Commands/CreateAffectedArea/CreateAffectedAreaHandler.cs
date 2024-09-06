@@ -4,7 +4,7 @@ using DisasterManager.Models;
 using Mapster;
 using MediatR;
 
-namespace DisasterManager.Services.AffectedAreaService.CreateAffectedArea
+namespace DisasterManager.Services.AffectedAreaService.Commands.CreateAffectedArea
 {
     public class CreateAffectedAreaHandler(DisasterManagerDbContext context) : IRequestHandler<CreateAffectedAreaCommand, ResponseDTO>
     {

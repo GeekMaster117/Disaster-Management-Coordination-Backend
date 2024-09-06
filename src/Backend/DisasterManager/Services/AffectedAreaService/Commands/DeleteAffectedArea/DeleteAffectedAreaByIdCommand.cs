@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace DisasterManager.Services.AffectedAreaService.DeleteAffectedArea
+namespace DisasterManager.Services.AffectedAreaService.Commands.DeleteAffectedArea
 {
     public class DeleteAffectedAreaByIdCommand : IRequest<bool>
     {

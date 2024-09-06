@@ -2,13 +2,12 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using System.Text;
-using DisasterManager.Services.AffectedAreaService.CreateAffectedArea;
 using AuthenticationAPI.Models;
 using Microsoft.AspNetCore.Mvc;
 using Carter;
 using System.Text.Json;
 
-namespace DisasterManager.Endpoints
+namespace DisasterManager.Services.AffectedAreaService.Commands.CreateAffectedArea
 {
     public class CreateAffectedAreaEndpoint : ICarterModule
     {
