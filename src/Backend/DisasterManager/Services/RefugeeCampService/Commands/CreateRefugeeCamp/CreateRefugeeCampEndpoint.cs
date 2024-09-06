@@ -11,7 +11,7 @@ namespace DisasterManager.Services.RefugeeCampService.Commands.CreateRefugeeCamp
 	{
 		public void AddRoutes(IEndpointRouteBuilder app)
 		{
-			app.MapPost("/affectedarea", async ([FromBody] CreateRefugeeCampCommand command, IMediator mediator) =>
+			app.MapPost("/refugeecamp", async ([FromBody] CreateRefugeeCampCommand command, IMediator mediator) =>
 			{
 				var response = await mediator.Send(command);
 				return Results.Content(

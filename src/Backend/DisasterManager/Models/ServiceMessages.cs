@@ -15,5 +15,18 @@
 		{
 			return $"No Affected Area found with Id: {id}";
 		}
+		public const string CreatedRefugeeCamp = "Created Refugee Camp";
+		public static string DeletedRefugeeCamp(int id)
+		{
+			return $"Deleted Refugee Camp found with Id: {id}";
+		}
+		public static string UpdatedRefugeeCamp(int id)
+		{
+			return $"Updated RefugeeCamo found with Id: {id}";
+		}
+		public static string NoRefugeeCampFound(int id)
+		{
+			return $"No Refugee Camp found with Id: {id}";
+		}
 	}
 }
