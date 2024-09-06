@@ -5,11 +5,11 @@
 		public const string CreatedAffectedArea = "Created Affected Area";
 		public static string DeletedAffectedArea(int id)
 		{
-			return $"Deleted Affected Area found with Id: {id}";
+			return $"Deleted Affected Area with Id: {id}";
 		}
 		public static string UpdatedAffectedArea(int id)
 		{
-			return $"Updated Affected Area found with Id: {id}";
+			return $"Updated Affected Area with Id: {id}";
 		}
 		public static string NoAffectedAreaFound(int id)
 		{
@@ -18,15 +18,15 @@
 		public const string CreatedRefugeeCamp = "Created Refugee Camp";
 		public static string DeletedRefugeeCamp(int id)
 		{
-			return $"Deleted Refugee Camp found with Id: {id}";
+			return $"Deleted Refugee Camp with Id: {id}";
 		}
 		public static string UpdatedRefugeeCamp(int id)
 		{
-			return $"Updated RefugeeCamo found with Id: {id}";
+			return $"Updated RefugeeCamo with Id: {id}";
 		}
 		public static string NoRefugeeCampFound(int id)
 		{
-			return $"No Refugee Camp found with Id: {id}";
+			return $"No Refugee Cam with Id: {id}";
 		}
 	}
 }
