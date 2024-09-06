@@ -13,7 +13,7 @@ namespace DisasterManager.Services.AffectedAreaService.GetAffectedArea.GetAllAff
 		public async Task<IEnumerable<GetAffectedAreaResponse>> Handle(GetAllAffectedAreasQuery request, CancellationToken cancellationToken)
 		{
 			List<GetAffectedAreaResponse> affectedAreas = [];
-			await _context.AffectedAreas.ForEachAsync(area => affectedAreas.Add(area.Adapt<GetAffectedAreaResponse>()));
+			await _context.AffectedAreas.ForEachAsync(area => affectedAreas.Add(area.Adapt<GetAffectedAreaResponse>()), cancellationToken);
 			return affectedAreas;
 		}
 	}
