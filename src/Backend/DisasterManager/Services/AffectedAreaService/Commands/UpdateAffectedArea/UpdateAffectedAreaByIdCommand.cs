@@ -1,8 +1,9 @@
-﻿using MediatR;
+﻿using DisasterManager.Models;
+using MediatR;
 
 namespace DisasterManager.Services.AffectedAreaService.Commands.UpdateAffectedArea
 {
-    public class UpdateAffectedAreaByIdCommand : IRequest<bool>
+    public class UpdateAffectedAreaByIdCommand : IRequest<ResponseDTO>
     {
         public int Id { get; set; }
         public double Latitude { get; set; }
