@@ -1,6 +1,8 @@
-﻿namespace DisasterManager.Services.AffectedAreaService.GetAffectedArea
+﻿using MediatR;
+
+namespace DisasterManager.Services.AffectedAreaService.UpdateAffectedArea
 {
-	public class GetAffectedAreaResponse
+	public class UpdateAffectedAreaByIdCommand : IRequest<bool>
 	{
 		public int Id { get; set; }
 		public double Latitude { get; set; }
