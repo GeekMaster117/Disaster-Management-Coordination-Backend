@@ -15,14 +15,10 @@ builder.Services.AddDbContext<DisasterManagerDbContext>(options =>
 {
 	options.UseSqlServer(builder.Configuration.GetConnectionString("MapDB"));
 });
-
-builder.Services.AddControllers();
 builder.Services.AddCarter();
 var app = builder.Build();
 // Configure the HTTP request pipeline.
 
-app.UseAuthorization();
 app.MapCarter();
-app.MapControllers();
 
 app.Run();

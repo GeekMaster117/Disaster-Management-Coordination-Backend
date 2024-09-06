@@ -1,8 +1,9 @@
-﻿using MediatR;
+﻿using AuthenticationAPI.Models;
+using MediatR;
 
 namespace DisasterManager.Services.AffectedAreaService.CreateAffectedArea
 {
-    public class CreateAffectedAreaCommand : IRequest
+    public class CreateAffectedAreaCommand : IRequest<ResponseDTO>
     {
         public double Latitude { get; set; }
         public double Longitude { get; set; }
