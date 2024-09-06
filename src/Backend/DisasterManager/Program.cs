@@ -1,3 +1,4 @@
+using Carter;
 using DisasterManager.Data;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
@@ -16,12 +17,12 @@ builder.Services.AddDbContext<DisasterManagerDbContext>(options =>
 });
 
 builder.Services.AddControllers();
-
+builder.Services.AddCarter();
 var app = builder.Build();
 // Configure the HTTP request pipeline.
 
 app.UseAuthorization();
-
+app.MapCarter();
 app.MapControllers();
 
 app.Run();
