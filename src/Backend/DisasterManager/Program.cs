@@ -1,8 +1,14 @@
 using DisasterManager.Data;
 using Microsoft.EntityFrameworkCore;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
+
+builder.Services.AddMediatR(configuration =>
+{
+	configuration.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly());
+});
 
 builder.Services.AddDbContext<DisasterManagerDbContext>(options =>
 {
