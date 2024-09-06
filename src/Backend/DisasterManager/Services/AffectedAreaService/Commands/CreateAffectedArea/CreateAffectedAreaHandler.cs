@@ -16,7 +16,7 @@ namespace DisasterManager.Services.AffectedAreaService.Commands.CreateAffectedAr
             await _context.SaveChangesAsync(cancellationToken);
             return new()
             {
-                StatusCode = ResponseMessages.Success.StatusCode,
+                StatusCode = DefaultMessages.Success.StatusCode,
                 Message = ServiceMessages.CreatedAffectedArea
             };
         }

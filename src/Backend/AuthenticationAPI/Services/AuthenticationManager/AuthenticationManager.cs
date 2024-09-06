@@ -36,7 +36,7 @@ namespace DisasterManager.Services.AuthenticationManager
             if (userExists != null)
                 return new()
                 {
-                    StatusCode = ResponseMessages.BadRequest.StatusCode,
+                    StatusCode = DefaultMessages.BadRequest.StatusCode,
                     Message = "Username already exists"
                 };
 
@@ -51,8 +51,8 @@ namespace DisasterManager.Services.AuthenticationManager
             if (!result.Succeeded)
                 return new()
                 {
-                    StatusCode = ResponseMessages.InternalServerError.StatusCode,
-                    Message = ResponseMessages.InternalServerError.Message
+                    StatusCode = DefaultMessages.InternalServerError.StatusCode,
+                    Message = DefaultMessages.InternalServerError.Message
                 };
 
             if (!await _roleManager.RoleExistsAsync(UserRoles.Admin))
@@ -62,7 +62,7 @@ namespace DisasterManager.Services.AuthenticationManager
 
             return new()
             {
-                StatusCode = ResponseMessages.Success.StatusCode,
+                StatusCode = DefaultMessages.Success.StatusCode,
                 Message = "Admin Registered"
             };
         }
@@ -77,8 +77,8 @@ namespace DisasterManager.Services.AuthenticationManager
                 if(!userRoles.Contains(UserRoles.Admin))
 					return new()
 					{
-						StatusCode = ResponseMessages.Unauthorized.StatusCode,
-						Message = ResponseMessages.Unauthorized.Message
+						StatusCode = DefaultMessages.Unauthorized.StatusCode,
+						Message = DefaultMessages.Unauthorized.Message
 					};
 
 				var authClaims = new List<Claim>
@@ -96,7 +96,7 @@ namespace DisasterManager.Services.AuthenticationManager
 
                 return new()
                 {
-                    StatusCode = ResponseMessages.Success.StatusCode,
+                    StatusCode = DefaultMessages.Success.StatusCode,
                     Message = new LoginResponse()
                     {
                         Token = new JwtSecurityTokenHandler().WriteToken(token),
@@ -106,7 +106,7 @@ namespace DisasterManager.Services.AuthenticationManager
             }
             return new()
             {
-                StatusCode = ResponseMessages.BadRequest.StatusCode,
+                StatusCode = DefaultMessages.BadRequest.StatusCode,
                 Message = "Username or Password is incorrect"
             };
         }

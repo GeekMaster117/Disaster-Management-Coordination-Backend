@@ -1,6 +1,6 @@
 ﻿namespace DisasterManager.Models
 {
-	public static class ResponseMessages
+	public static class DefaultMessages
 	{
 		public static class InternalServerError
 		{

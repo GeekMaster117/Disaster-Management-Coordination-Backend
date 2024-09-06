@@ -16,7 +16,7 @@ namespace DisasterManager.Services.RefugeeCampService.Commands.CreateRefugeeCamp
 			if (affectedArea == null)
 				return new()
 				{
-					StatusCode = ResponseMessages.BadRequest.StatusCode,
+					StatusCode = DefaultMessages.BadRequest.StatusCode,
 					Message = "Cannot find the following affected area"
 				};
 			RefugeeCamp refugeeCamp = request.Adapt<RefugeeCamp>();
@@ -24,7 +24,7 @@ namespace DisasterManager.Services.RefugeeCampService.Commands.CreateRefugeeCamp
 			await _context.RefugeeCamps.AddAsync(refugeeCamp);
 			return new()
 			{
-				StatusCode = ResponseMessages.Success.StatusCode,
+				StatusCode = DefaultMessages.Success.StatusCode,
 				Message = "Refugee Camp created"
 			}
 		}

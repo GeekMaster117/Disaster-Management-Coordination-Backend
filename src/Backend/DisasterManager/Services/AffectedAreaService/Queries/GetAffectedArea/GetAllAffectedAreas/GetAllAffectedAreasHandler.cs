@@ -17,7 +17,7 @@ namespace DisasterManager.Services.AffectedAreaService.Queries.GetAffectedArea.G
             await _context.AffectedAreas.ForEachAsync(area => affectedAreas.Add(area.Adapt<GetAffectedAreaResponse>()), cancellationToken);
             return new()
             {
-                StatusCode = ResponseMessages.Success.StatusCode,
+                StatusCode = DefaultMessages.Success.StatusCode,
                 Message = affectedAreas
             };
         }

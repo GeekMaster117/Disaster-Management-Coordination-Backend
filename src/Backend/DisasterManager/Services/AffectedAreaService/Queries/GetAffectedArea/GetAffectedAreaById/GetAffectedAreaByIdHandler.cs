@@ -17,12 +17,12 @@ namespace DisasterManager.Services.AffectedAreaService.Queries.GetAffectedArea.G
             if (affectedArea == null)
                 return new()
                 {
-                    StatusCode = ResponseMessages.BadRequest.StatusCode,
+                    StatusCode = DefaultMessages.BadRequest.StatusCode,
                     Message = ServiceMessages.NoAffectedAreaFound(request.Id)
 				};
             return new()
             {
-                StatusCode = ResponseMessages.Success.StatusCode,
+                StatusCode = DefaultMessages.Success.StatusCode,
                 Message = affectedArea
             };
 

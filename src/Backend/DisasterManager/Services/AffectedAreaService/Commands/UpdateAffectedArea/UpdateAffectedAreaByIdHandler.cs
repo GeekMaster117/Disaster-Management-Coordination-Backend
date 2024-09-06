@@ -23,7 +23,7 @@ namespace DisasterManager.Services.AffectedAreaService.Commands.UpdateAffectedAr
             {
                 return new ResponseDTO
                 {
-                    StatusCode = ResponseMessages.BadRequest.StatusCode,
+                    StatusCode = DefaultMessages.BadRequest.StatusCode,
                     Message = ServiceMessages.NoAffectedAreaFound(request.Id)
                 };
             }
@@ -38,7 +38,7 @@ namespace DisasterManager.Services.AffectedAreaService.Commands.UpdateAffectedAr
 
             return new ResponseDTO
             {
-                StatusCode = ResponseMessages.Success.StatusCode,
+                StatusCode = DefaultMessages.Success.StatusCode,
                 Message = ServiceMessages.UpdatedAffectedArea(request.Id)
             };
         }
