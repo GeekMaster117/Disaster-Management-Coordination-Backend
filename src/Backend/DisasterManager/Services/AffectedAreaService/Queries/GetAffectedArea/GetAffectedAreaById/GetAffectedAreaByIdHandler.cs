@@ -18,7 +18,7 @@ namespace DisasterManager.Services.AffectedAreaService.Queries.GetAffectedArea.G
                 return new()
                 {
                     StatusCode = ResponseMessages.BadRequest.StatusCode,
-                    Message = "Cannot find the following affected area"
+                    Message = ServiceMessages.NoAffectedAreaFound(request.Id)
 				};
             return new()
             {

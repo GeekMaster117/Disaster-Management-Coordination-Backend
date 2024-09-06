@@ -24,7 +24,7 @@ namespace DisasterManager.Services.AffectedAreaService.Commands.UpdateAffectedAr
                 return new ResponseDTO
                 {
                     StatusCode = ResponseMessages.BadRequest.StatusCode,
-                    Message = "Affected area not found"
+                    Message = ServiceMessages.NoAffectedAreaFound(request.Id)
                 };
             }
 
@@ -39,7 +39,7 @@ namespace DisasterManager.Services.AffectedAreaService.Commands.UpdateAffectedAr
             return new ResponseDTO
             {
                 StatusCode = ResponseMessages.Success.StatusCode,
-                Message = "Affected area successfully updated"
+                Message = ServiceMessages.UpdatedAffectedArea(request.Id)
             };
         }
     }

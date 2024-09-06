@@ -17,7 +17,7 @@ namespace DisasterManager.Services.AffectedAreaService.Commands.CreateAffectedAr
             return new()
             {
                 StatusCode = ResponseMessages.Success.StatusCode,
-                Message = "Affected Area created"
+                Message = ServiceMessages.CreatedAffectedArea
             };
         }
     }

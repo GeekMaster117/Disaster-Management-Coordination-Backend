@@ -24,7 +24,7 @@ namespace DisasterManager.Services.AffectedAreaService.Commands.DeleteAffectedAr
                 return new ResponseDTO
                 {
                     StatusCode = ResponseMessages.BadRequest.StatusCode,
-                    Message = "Cannot find the following affected area"
+                    Message = ServiceMessages.NoAffectedAreaFound(request.Id)
                 };
             }
 
@@ -34,7 +34,7 @@ namespace DisasterManager.Services.AffectedAreaService.Commands.DeleteAffectedAr
             return new ResponseDTO
             {
                 StatusCode = ResponseMessages.Success.StatusCode,
-                Message = "Affected area successfully deleted"
+                Message = ServiceMessages.DeletedAffectedArea(request.Id)
             };
         }
     }
