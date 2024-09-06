@@ -5,18 +5,37 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DisasterManager.Services.AffectedAreaService.Commands.DeleteAffectedArea
 {
-    public class DeleteAffectedAreaByIdHandler(DisasterManagerDbContext context) : IRequestHandler<DeleteAffectedAreaByIdCommand, bool>
+    public class DeleteAffectedAreaByIdHandler : IRequestHandler<DeleteAffectedAreaByIdCommand, ResponseDTO>
     {
-        private readonly DisasterManagerDbContext _context = context;
+        private readonly DisasterManagerDbContext _context;
 
-        public async Task<bool> Handle(DeleteAffectedAreaByIdCommand request, CancellationToken cancellationToken)
+        public DeleteAffectedAreaByIdHandler(DisasterManagerDbContext context)
         {
-            AffectedArea? affectedArea = await _context.AffectedAreas.SingleOrDefaultAsync(area => area.AreaId == request.Id, cancellationToken);
+            _context = context;
+        }
+
+        public async Task<ResponseDTO> Handle(DeleteAffectedAreaByIdCommand request, CancellationToken cancellationToken)
+        {
+            var affectedArea = await _context.AffectedAreas
+                .SingleOrDefaultAsync(area => area.AreaId == request.Id, cancellationToken);
+
             if (affectedArea == null)
-                return false;
+            {
+                return new ResponseDTO
+                {
+                    StatusCode = ResponseMessages.BadRequest.StatusCode,
+                    Message = "Cannot find the following affected area"
+                };
+            }
+
             _context.AffectedAreas.Remove(affectedArea);
             await _context.SaveChangesAsync(cancellationToken);
-            return true;
+
+            return new ResponseDTO
+            {
+                StatusCode = ResponseMessages.Success.StatusCode,
+                Message = "Affected area successfully deleted"
+            };
         }
     }
 }
