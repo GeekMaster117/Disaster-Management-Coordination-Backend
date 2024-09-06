@@ -12,8 +12,8 @@ namespace DisasterManager.Services.AffectedAreaService.CreateAffectedArea
         public async Task Handle(CreateAffectedAreaCommand request, CancellationToken cancellationToken)
         {
             AffectedArea affectedArea = request.Adapt<AffectedArea>();
-            await _context.AffectedAreas.AddAsync(affectedArea);
-            await _context.SaveChangesAsync();
+            await _context.AffectedAreas.AddAsync(affectedArea, cancellationToken);
+            await _context.SaveChangesAsync(cancellationToken);
         }
     }
 }
