@@ -1,6 +1,5 @@
-﻿using AuthenticationAPI.Models;
+﻿using DisasterManager.Models;
 using DisasterManager.Data;
-using DisasterManager.Models;
 using Mapster;
 using MediatR;
 

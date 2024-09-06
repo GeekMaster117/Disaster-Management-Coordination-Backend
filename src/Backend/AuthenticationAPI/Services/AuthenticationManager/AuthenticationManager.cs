@@ -8,11 +8,11 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.IdentityModel.Tokens;
-using AuthenticationAPI.Models;
+using DisasterManager.Models;
 using Azure;
-using AuthenticationAPI.Services.JwtManager;
+using DisasterManager.Services.JwtManager;
 
-namespace AuthenticationAPI.Services.AuthenticationManager
+namespace DisasterManager.Services.AuthenticationManager
 {
     public class AuthenticationManager : IAuthenticationManager
     {

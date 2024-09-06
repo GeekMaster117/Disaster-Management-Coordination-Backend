@@ -1,8 +1,8 @@
-using AuthenticationAPI.Data;
-using AuthenticationAPI.Models;
-using AuthenticationAPI.Services.AuthenticationManager;
-using AuthenticationAPI.Services.JwtManager;
-using AuthenticationAPI.Validators;
+using DisasterManager.Data;
+using DisasterManager.Models;
+using DisasterManager.Services.AuthenticationManager;
+using DisasterManager.Services.JwtManager;
+using DisasterManager.Validators;
 using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;

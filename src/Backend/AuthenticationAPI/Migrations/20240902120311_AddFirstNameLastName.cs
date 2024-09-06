@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace AuthenticationAPI.Migrations
+namespace DisasterManager.Migrations
 {
     /// <inheritdoc />
     public partial class AddFirstNameLastName : Migration

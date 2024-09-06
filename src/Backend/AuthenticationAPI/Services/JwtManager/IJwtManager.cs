@@ -1,7 +1,7 @@
 ﻿using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 
-namespace AuthenticationAPI.Services.JwtManager
+namespace DisasterManager.Services.JwtManager
 {
     public interface IJwtManager
     {

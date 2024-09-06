@@ -1,6 +1,6 @@
-﻿using AuthenticationAPI.Models;
+﻿using DisasterManager.Models;
 
-namespace AuthenticationAPI.Services.AuthenticationManager
+namespace DisasterManager.Services.AuthenticationManager
 {
     public interface IAuthenticationManager
     {

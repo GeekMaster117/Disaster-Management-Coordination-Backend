@@ -1,9 +1,9 @@
-﻿using AuthenticationAPI.Models;
+﻿using DisasterManager.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace AuthenticationAPI.Data
+namespace DisasterManager.Data
 {
 	public class AuthenticationDbContext(DbContextOptions<AuthenticationDbContext> options)
 		: IdentityDbContext<ApplicationUser>(options)
@@ -23,8 +23,8 @@ namespace AuthenticationAPI.Data
 				new IdentityRole
 				{
 					Id = "1",
-					Name = AuthenticationAPI.Models.UserRoles.Admin,
-					NormalizedName = AuthenticationAPI.Models.UserRoles.Admin.ToUpper()
+					Name = DisasterManager.Models.UserRoles.Admin,
+					NormalizedName = DisasterManager.Models.UserRoles.Admin.ToUpper()
 				});
 			builder.Entity<IdentityUserRole<string>>().HasData(
 				new IdentityUserRole<string>

@@ -1,4 +1,4 @@
-﻿using AuthenticationAPI.Models;
+﻿using DisasterManager.Models;
 using MediatR;
 
 namespace DisasterManager.Services.AffectedAreaService.Commands.CreateAffectedArea

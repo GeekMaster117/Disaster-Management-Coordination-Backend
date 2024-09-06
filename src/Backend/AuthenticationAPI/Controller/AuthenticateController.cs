@@ -1,11 +1,11 @@
-﻿using AuthenticationAPI.Models;
-using AuthenticationAPI.Services.AuthenticationManager;
+﻿using DisasterManager.Models;
+using DisasterManager.Services.AuthenticationManager;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.IdentityModel.Tokens.Jwt;
 
-namespace AuthenticationAPI.Controller
+namespace DisasterManager.Controller
 {
     [ApiController]
     public class AuthenticateController : ControllerBase

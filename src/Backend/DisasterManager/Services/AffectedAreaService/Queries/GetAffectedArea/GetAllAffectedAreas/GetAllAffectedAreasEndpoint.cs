@@ -1,21 +1,21 @@
-﻿using MediatR;
+﻿using DisasterManager.Models;
+using Carter;
+using DisasterManager.Services.AffectedAreaService.Queries.GetAffectedArea.GetAllAffectedAreas;
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using System.Text;
-using DisasterManager.Models;
-using Microsoft.AspNetCore.Mvc;
-using Carter;
 using System.Text.Json;
 
-namespace DisasterManager.Services.AffectedAreaService.Commands.CreateAffectedArea
+namespace DisasterManager.Services.AffectedAreaService.Queries.GetAllAffectedAreas
 {
-    public class CreateAffectedAreaEndpoint : ICarterModule
+    public class GetAllAffectedAreasEndpoint : ICarterModule
     {
         public void AddRoutes(IEndpointRouteBuilder app)
         {
-            app.MapPost("/affectedarea", async ([FromBody] CreateAffectedAreaCommand command, IMediator mediator) =>
+            app.MapGet("/affectedarea", async (IMediator mediator) =>
             {
-                var response = await mediator.Send(command);
+                var response = await mediator.Send(new GetAllAffectedAreasQuery());
                 return Results.Content(
                     JsonSerializer.Serialize(response),
                     "application/json",

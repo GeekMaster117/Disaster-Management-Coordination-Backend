@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
-using AuthenticationAPI.Models;
+using DisasterManager.Models;
 
-namespace AuthenticationAPI.Validators
+namespace DisasterManager.Validators
 {
     public class RegisterDTOValidator : AbstractValidator<RegisterDTO>
     {

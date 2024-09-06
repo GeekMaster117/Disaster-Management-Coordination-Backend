@@ -1,4 +1,4 @@
-﻿namespace AuthenticationAPI.Models
+﻿namespace DisasterManager.Models
 {
 	public static class ResponseMessages
 	{
