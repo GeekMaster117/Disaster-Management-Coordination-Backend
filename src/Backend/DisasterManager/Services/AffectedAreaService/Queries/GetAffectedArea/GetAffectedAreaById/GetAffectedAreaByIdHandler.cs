@@ -7,16 +7,25 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DisasterManager.Services.AffectedAreaService.Queries.GetAffectedArea.GetAffectedAreaById
 {
-    public class GetAffectedAreaByIdHandler(DisasterManagerDbContext context) : IRequestHandler<GetAffectedAreaByIdQuery, GetAffectedAreaResponse?>
+    public class GetAffectedAreaByIdHandler(DisasterManagerDbContext context) : IRequestHandler<GetAffectedAreaByIdQuery, ResponseDTO>
     {
         private readonly DisasterManagerDbContext _context = context;
 
-        public async Task<GetAffectedAreaResponse?> Handle(GetAffectedAreaByIdQuery request, CancellationToken cancellationToken)
+        public async Task<ResponseDTO> Handle(GetAffectedAreaByIdQuery request, CancellationToken cancellationToken)
         {
             AffectedArea? affectedArea = await _context.AffectedAreas.SingleOrDefaultAsync(area => area.AreaId == request.Id, cancellationToken);
             if (affectedArea == null)
-                return null;
-            return affectedArea.Adapt<GetAffectedAreaResponse>();
+                return new()
+                {
+                    StatusCode = ResponseMessages.BadRequest.StatusCode,
+                    Message = "Cannot find the following affected area"
+				};
+            return new()
+            {
+                StatusCode = ResponseMessages.Success.StatusCode,
+                Message = affectedArea
+            };
+
         }
     }
 }

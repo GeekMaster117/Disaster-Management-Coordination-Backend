@@ -8,7 +8,7 @@ namespace DisasterManager.Models
 		[Key]
 		public int CampId { get; set; }
 		[ForeignKey("Area")]
-		public int AreaID { get; set; }
+		public int AreaId { get; set; }
 		public double latitude { get; set; }
 		public double longitude { get; set; }
 		public AffectedArea Area { get; set; } = new AffectedArea();

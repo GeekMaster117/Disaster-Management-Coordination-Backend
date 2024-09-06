@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using System.Text;
 using System.Text.Json;
+using Microsoft.AspNetCore.Mvc;
 
 namespace DisasterManager.Services.AffectedAreaService.Queries.GetAffectedArea.GetAffectedAreaById
 {
@@ -13,17 +14,14 @@ namespace DisasterManager.Services.AffectedAreaService.Queries.GetAffectedArea.G
     {
         public void AddRoutes(IEndpointRouteBuilder app)
         {
-            app.MapGet("/affectedarea/{id:int}", async (int id, IMediator mediator) =>
+            app.MapGet("/affectedarea", async ([FromBody] GetAffectedAreaByIdQuery query, IMediator mediator) =>
             {
-                var response = await mediator.Send(new GetAffectedAreaByIdQuery { Id = id });
-                if (response == null)
-                {
-                    return Results.NotFound();
-                }
+                var response = await mediator.Send(query);
                 return Results.Content(
                     JsonSerializer.Serialize(response),
                     "application/json",
-                    Encoding.UTF8
+                    Encoding.UTF8,
+                    response.StatusCode
                 );
             });
         }
