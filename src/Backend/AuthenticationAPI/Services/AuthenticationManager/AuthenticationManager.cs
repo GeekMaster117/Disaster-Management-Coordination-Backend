@@ -11,6 +11,7 @@ using Microsoft.IdentityModel.Tokens;
 using DisasterManager.Models;
 using Azure;
 using DisasterManager.Services.JwtManager;
+using AuthenticationAPI.Models;
 
 namespace DisasterManager.Services.AuthenticationManager
 {
@@ -37,7 +38,7 @@ namespace DisasterManager.Services.AuthenticationManager
                 return new()
                 {
                     StatusCode = DefaultMessages.BadRequest.StatusCode,
-                    Message = "Username already exists"
+                    Message = ServiceMessages.UsernameAlreadyExists
                 };
 
             ApplicationUser user = new()
@@ -63,7 +64,7 @@ namespace DisasterManager.Services.AuthenticationManager
             return new()
             {
                 StatusCode = DefaultMessages.Success.StatusCode,
-                Message = "Admin Registered"
+                Message = ServiceMessages.AdminRegistered
             };
         }
 
@@ -107,7 +108,7 @@ namespace DisasterManager.Services.AuthenticationManager
             return new()
             {
                 StatusCode = DefaultMessages.BadRequest.StatusCode,
-                Message = "Username or Password is incorrect"
+                Message = ServiceMessages.IncorrectCredentials
             };
         }
     }
