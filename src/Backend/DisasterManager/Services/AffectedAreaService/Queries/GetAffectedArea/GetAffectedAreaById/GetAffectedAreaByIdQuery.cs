@@ -6,6 +6,6 @@ namespace DisasterManager.Services.AffectedAreaService.Queries.GetAffectedArea.G
 {
     public class GetAffectedAreaByIdQuery : IRequest<ResponseDTO>
     {
-        public int Id { get; set; }
+        public int AreaId { get; set; }
     }
 }

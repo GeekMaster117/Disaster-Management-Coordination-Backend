@@ -17,24 +17,28 @@ namespace DisasterManager.Services.AffectedAreaService.Commands.DeleteAffectedAr
         public async Task<ResponseDTO> Handle(DeleteAffectedAreaByIdCommand request, CancellationToken cancellationToken)
         {
             var affectedArea = await _context.AffectedAreas
-                .SingleOrDefaultAsync(area => area.AreaId == request.Id, cancellationToken);
+                .SingleOrDefaultAsync(area => area.AreaId == request.AreaId, cancellationToken);
 
             if (affectedArea == null)
             {
                 return new ResponseDTO
                 {
                     StatusCode = DefaultMessages.BadRequest.StatusCode,
-                    Message = ServiceMessages.NoAffectedAreaFound(request.Id)
+                    Message = ServiceMessages.NoAffectedAreaFound(request.AreaId)
                 };
             }
 
             _context.AffectedAreas.Remove(affectedArea);
+
+            List<RefugeeCamp> camps = await _context.RefugeeCamps.Where(camp => camp.AreaId == request.AreaId).ToListAsync(cancellationToken);
+            _context.RefugeeCamps.RemoveRange(camps);
+
             await _context.SaveChangesAsync(cancellationToken);
 
             return new ResponseDTO
             {
                 StatusCode = DefaultMessages.Success.StatusCode,
-                Message = ServiceMessages.DeletedAffectedArea(request.Id)
+                Message = ServiceMessages.DeletedAffectedArea(request.AreaId)
             };
         }
     }

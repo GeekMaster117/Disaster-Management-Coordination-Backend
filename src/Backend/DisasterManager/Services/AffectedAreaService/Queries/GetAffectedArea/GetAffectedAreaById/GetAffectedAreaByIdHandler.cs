@@ -13,12 +13,12 @@ namespace DisasterManager.Services.AffectedAreaService.Queries.GetAffectedArea.G
 
         public async Task<ResponseDTO> Handle(GetAffectedAreaByIdQuery request, CancellationToken cancellationToken)
         {
-            AffectedArea? affectedArea = await _context.AffectedAreas.SingleOrDefaultAsync(area => area.AreaId == request.Id, cancellationToken);
+            AffectedArea? affectedArea = await _context.AffectedAreas.SingleOrDefaultAsync(area => area.AreaId == request.AreaId, cancellationToken);
             if (affectedArea == null)
                 return new()
                 {
                     StatusCode = DefaultMessages.BadRequest.StatusCode,
-                    Message = ServiceMessages.NoAffectedAreaFound(request.Id)
+                    Message = ServiceMessages.NoAffectedAreaFound(request.AreaId)
 				};
             return new()
             {

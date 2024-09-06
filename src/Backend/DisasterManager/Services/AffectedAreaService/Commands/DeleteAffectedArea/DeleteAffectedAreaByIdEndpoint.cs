@@ -4,6 +4,7 @@ using DisasterManager.Services.AffectedAreaService.Commands.DeleteAffectedArea;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using System.Text;
 using System.Text.Json;
 
@@ -13,9 +14,8 @@ namespace DisasterManager.Services.AffectedAreaService.Commands.DeleteAffectedAr
     {
         public void AddRoutes(IEndpointRouteBuilder app)
         {
-            app.MapDelete("/affectedarea/{id:int}", async (int id, IMediator mediator) =>
+            app.MapDelete("/affectedarea", async ([FromBody] DeleteAffectedAreaByIdCommand command, IMediator mediator) =>
             {
-                var command = new DeleteAffectedAreaByIdCommand { Id = id };
                 var response = await mediator.Send(command);
 
                 return Results.Content(

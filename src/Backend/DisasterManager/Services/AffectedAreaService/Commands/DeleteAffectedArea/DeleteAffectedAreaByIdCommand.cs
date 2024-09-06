@@ -5,6 +5,6 @@ namespace DisasterManager.Services.AffectedAreaService.Commands.DeleteAffectedAr
 {
     public class DeleteAffectedAreaByIdCommand : IRequest<ResponseDTO>
     {
-        public int Id { get; set; }
+        public int AreaId { get; set; }
     }
 }
