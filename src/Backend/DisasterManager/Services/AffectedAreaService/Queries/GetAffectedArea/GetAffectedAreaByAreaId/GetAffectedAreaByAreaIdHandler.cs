@@ -1,31 +1,31 @@
 ﻿using DisasterManager.Data;
 using DisasterManager.Models;
-using DisasterManager.Services.AffectedAreaService.Queries.GetAffectedArea;
+using DisasterManager.Services.AffectedAreaService.Queries.GetAffectedArea.GetAffectedAreaById;
 using Mapster;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
-namespace DisasterManager.Services.AffectedAreaService.Queries.GetAffectedArea.GetAffectedAreaById
+namespace DisasterManager.Services.AffectedAreaService.Queries.GetAffectedArea.GetAffectedAreaByAreaId
 {
-    public class GetAffectedAreaByAreaIdHandler(DisasterManagerDbContext context) : IRequestHandler<GetAffectedAreaByAreaIdQuery, ResponseDTO>
-    {
-        private readonly DisasterManagerDbContext _context = context;
+	public class GetAffectedAreaByAreaIdHandler(DisasterManagerDbContext context) : IRequestHandler<GetAffectedAreaByAreaIdQuery, ResponseDTO>
+	{
+		private readonly DisasterManagerDbContext _context = context;
 
-        public async Task<ResponseDTO> Handle(GetAffectedAreaByAreaIdQuery request, CancellationToken cancellationToken)
-        {
-            AffectedArea? affectedArea = await _context.AffectedAreas.FindAsync([request.AreaId], cancellationToken);
-            if (affectedArea == null)
-                return new()
-                {
-                    StatusCode = DefaultMessages.BadRequest.StatusCode,
-                    Message = ServiceMessages.NoAffectedAreaFound(request.AreaId)
+		public async Task<ResponseDTO> Handle(GetAffectedAreaByAreaIdQuery request, CancellationToken cancellationToken)
+		{
+			AffectedArea? affectedArea = await _context.AffectedAreas.FindAsync([request.AreaId], cancellationToken);
+			if (affectedArea == null)
+				return new()
+				{
+					StatusCode = DefaultMessages.BadRequest.StatusCode,
+					Message = ServiceMessages.NoAffectedAreaFound(request.AreaId)
 				};
-            return new()
-            {
-                StatusCode = DefaultMessages.Success.StatusCode,
-                Message = affectedArea
-            };
+			return new()
+			{
+				StatusCode = DefaultMessages.Success.StatusCode,
+				Message = affectedArea
+			};
 
-        }
-    }
+		}
+	}
 }

@@ -8,7 +8,7 @@ namespace DisasterManager.Services.RefugeeCampService.Commands.CreateRefugeeCamp
 {
 	public class CreateRefugeeCampHandler(DisasterManagerDbContext context) : IRequestHandler<CreateRefugeeCampCommand, ResponseDTO>
 	{
-		private DisasterManagerDbContext _context = context;
+		private readonly DisasterManagerDbContext _context = context;
 
 		public async Task<ResponseDTO> Handle(CreateRefugeeCampCommand request, CancellationToken cancellationToken)
 		{

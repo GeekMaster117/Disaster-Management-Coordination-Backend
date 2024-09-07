@@ -3,7 +3,7 @@ using DisasterManager.Models;
 using Mapster;
 using MediatR;
 
-namespace DisasterManager.Services.RefugeeCampService.Queries.GetRefugeeCamp.GetRefugeeCampById
+namespace DisasterManager.Services.RefugeeCampService.Queries.GetRefugeeCamp.GetRefugeeCampByCampId
 {
 	public class GetRefugeeCampByCampIdHandler(DisasterManagerDbContext context) : IRequestHandler<GetRefugeeCampByCampIdCommand, ResponseDTO>
 	{
