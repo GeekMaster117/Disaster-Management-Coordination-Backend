@@ -16,8 +16,7 @@ namespace DisasterManager.Services.AffectedAreaService.Commands.DeleteAffectedAr
 
         public async Task<ResponseDTO> Handle(DeleteAffectedAreaByIdCommand request, CancellationToken cancellationToken)
         {
-            var affectedArea = await _context.AffectedAreas
-                .SingleOrDefaultAsync(area => area.AreaId == request.AreaId, cancellationToken);
+            AffectedArea? affectedArea = await _context.AffectedAreas.FindAsync([request.AreaId], cancellationToken);
 
             if (affectedArea == null)
             {

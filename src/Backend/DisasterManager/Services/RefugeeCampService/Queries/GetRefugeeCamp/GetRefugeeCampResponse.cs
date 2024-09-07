@@ -2,7 +2,7 @@
 
 namespace DisasterManager.Services.RefugeeCampService.Queries.GetRefugeeCamp
 {
-	public class GetRefugeeCampByIdResponse
+	public class GetRefugeeCampResponse
 	{
 		public int CampId { get; set; }
 		public int AreaId { get; set; }

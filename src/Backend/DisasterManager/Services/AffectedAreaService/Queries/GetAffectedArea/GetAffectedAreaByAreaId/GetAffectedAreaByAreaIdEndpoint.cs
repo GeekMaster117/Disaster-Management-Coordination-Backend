@@ -10,11 +10,11 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DisasterManager.Services.AffectedAreaService.Queries.GetAffectedArea.GetAffectedAreaById
 {
-    public class GetAffectedAreaByIdEndpoint : ICarterModule
+    public class GetAffectedAreaByAreaIdEndpoint : ICarterModule
     {
         public void AddRoutes(IEndpointRouteBuilder app)
         {
-            app.MapGet("/affectedarea", async ([FromBody] GetAffectedAreaByIdQuery query, IMediator mediator) =>
+            app.MapGet("/affectedarea", async ([FromBody] GetAffectedAreaByAreaIdQuery query, IMediator mediator) =>
             {
                 var response = await mediator.Send(query);
                 return Results.Content(

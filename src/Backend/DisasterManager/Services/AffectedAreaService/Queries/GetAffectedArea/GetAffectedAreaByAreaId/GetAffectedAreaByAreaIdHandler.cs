@@ -7,13 +7,13 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DisasterManager.Services.AffectedAreaService.Queries.GetAffectedArea.GetAffectedAreaById
 {
-    public class GetAffectedAreaByIdHandler(DisasterManagerDbContext context) : IRequestHandler<GetAffectedAreaByIdQuery, ResponseDTO>
+    public class GetAffectedAreaByAreaIdHandler(DisasterManagerDbContext context) : IRequestHandler<GetAffectedAreaByAreaIdQuery, ResponseDTO>
     {
         private readonly DisasterManagerDbContext _context = context;
 
-        public async Task<ResponseDTO> Handle(GetAffectedAreaByIdQuery request, CancellationToken cancellationToken)
+        public async Task<ResponseDTO> Handle(GetAffectedAreaByAreaIdQuery request, CancellationToken cancellationToken)
         {
-            AffectedArea? affectedArea = await _context.AffectedAreas.SingleOrDefaultAsync(area => area.AreaId == request.AreaId, cancellationToken);
+            AffectedArea? affectedArea = await _context.AffectedAreas.FindAsync([request.AreaId], cancellationToken);
             if (affectedArea == null)
                 return new()
                 {

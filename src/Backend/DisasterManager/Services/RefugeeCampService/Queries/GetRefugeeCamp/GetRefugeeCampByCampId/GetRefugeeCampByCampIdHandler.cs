@@ -5,11 +5,11 @@ using MediatR;
 
 namespace DisasterManager.Services.RefugeeCampService.Queries.GetRefugeeCamp.GetRefugeeCampById
 {
-	public class GetRefugeeCampByIdHandler(DisasterManagerDbContext context) : IRequestHandler<GetRefugeeCampByIdCommand, ResponseDTO>
+	public class GetRefugeeCampByCampIdHandler(DisasterManagerDbContext context) : IRequestHandler<GetRefugeeCampByCampIdCommand, ResponseDTO>
 	{
 		private readonly DisasterManagerDbContext _context = context;
 
-		public async Task<ResponseDTO> Handle(GetRefugeeCampByIdCommand request, CancellationToken cancellationToken)
+		public async Task<ResponseDTO> Handle(GetRefugeeCampByCampIdCommand request, CancellationToken cancellationToken)
 		{
 			RefugeeCamp? camp = await _context.RefugeeCamps.FindAsync([request.CampId], cancellationToken);
 			if (camp == null)
@@ -18,7 +18,7 @@ namespace DisasterManager.Services.RefugeeCampService.Queries.GetRefugeeCamp.Get
 					StatusCode = DefaultMessages.BadRequest.StatusCode,
 					Message = ServiceMessages.NoRefugeeCampFound(request.CampId)
 				};
-			GetRefugeeCampByIdResponse response = camp.Adapt<GetRefugeeCampByIdResponse>();
+			GetRefugeeCampResponse response = camp.Adapt<GetRefugeeCampResponse>();
 			return new()
 			{
 				StatusCode = DefaultMessages.Success.StatusCode,

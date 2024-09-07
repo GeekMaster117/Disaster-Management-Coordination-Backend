@@ -12,7 +12,7 @@ namespace DisasterManager.Services.RefugeeCampService.Commands.CreateRefugeeCamp
 
 		public async Task<ResponseDTO> Handle(CreateRefugeeCampCommand request, CancellationToken cancellationToken)
 		{
-			AffectedArea? affectedArea = await _context.AffectedAreas.SingleOrDefaultAsync(area => area.AreaId == request.AreaId, cancellationToken);
+			AffectedArea? affectedArea = await _context.AffectedAreas.FindAsync([request.AreaId], cancellationToken);
 			if (affectedArea == null)
 				return new()
 				{
