@@ -3,7 +3,7 @@ using MediatR;
 
 namespace DisasterManager.Services.RefugeeCampService.Queries.GetRefugeeCamp.GetAllRefugeeCamps
 {
-	public class GetAllRefugeeCampsCommand : IRequest<ResponseDTO>
+	public class GetAllRefugeeCampsQuery : IRequest<ResponseDTO>
 	{
 	}
 }

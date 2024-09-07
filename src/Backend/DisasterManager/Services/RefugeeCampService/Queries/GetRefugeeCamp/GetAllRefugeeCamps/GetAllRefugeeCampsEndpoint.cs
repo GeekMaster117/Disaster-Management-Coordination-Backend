@@ -14,7 +14,7 @@ namespace DisasterManager.Services.RefugeeCampService.Queries.GetRefugeeCamp
         {
             app.MapGet("/refugeecamp", async (IMediator mediator) =>
             {
-                var response = await mediator.Send(new GetAllRefugeeCampsCommand());
+                var response = await mediator.Send(new GetAllRefugeeCampsQuery());
                 return Results.Content(
                     JsonSerializer.Serialize(response),
                     "application/json",
