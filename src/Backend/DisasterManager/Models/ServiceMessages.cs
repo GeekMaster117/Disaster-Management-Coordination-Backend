@@ -22,7 +22,7 @@
 		}
 		public static string UpdatedRefugeeCamp(int id)
 		{
-			return $"Updated RefugeeCamp with Id: {id}";
+			return $"Updated Refugee Camp with Id: {id}";
 		}
 		public static string NoRefugeeCampFound(int id)
 		{
