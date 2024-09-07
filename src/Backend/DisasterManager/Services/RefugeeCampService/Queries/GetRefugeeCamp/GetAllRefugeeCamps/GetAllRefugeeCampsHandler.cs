@@ -13,7 +13,7 @@ namespace DisasterManager.Services.RefugeeCampService.Queries.GetRefugeeCamp.Get
 		public async Task<ResponseDTO> Handle(GetAllRefugeeCampsCommand request, CancellationToken cancellationToken)
 		{
 			List<GetRefugeeCampResponse> camps = [];
-			await _context.RefugeeCamps.ForEachAsync(camp => camps.Add(camp.Adapt<GetRefugeeCampResponse>()));
+			await _context.RefugeeCamps.ForEachAsync(camp => camps.Add(camp.Adapt<GetRefugeeCampResponse>()), cancellationToken);
 			return new()
 			{
 				StatusCode = DefaultMessages.Success.StatusCode,
