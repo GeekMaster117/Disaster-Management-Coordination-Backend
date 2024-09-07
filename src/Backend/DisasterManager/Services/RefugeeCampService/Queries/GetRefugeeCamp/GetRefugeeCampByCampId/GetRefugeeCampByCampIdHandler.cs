@@ -5,11 +5,11 @@ using MediatR;
 
 namespace DisasterManager.Services.RefugeeCampService.Queries.GetRefugeeCamp.GetRefugeeCampByCampId
 {
-	public class GetRefugeeCampByCampIdHandler(DisasterManagerDbContext context) : IRequestHandler<GetRefugeeCampByCampIdCommand, ResponseDTO>
+	public class GetRefugeeCampByCampIdHandler(DisasterManagerDbContext context) : IRequestHandler<GetRefugeeCampByCampIdQuery, ResponseDTO>
 	{
 		private readonly DisasterManagerDbContext _context = context;
 
-		public async Task<ResponseDTO> Handle(GetRefugeeCampByCampIdCommand request, CancellationToken cancellationToken)
+		public async Task<ResponseDTO> Handle(GetRefugeeCampByCampIdQuery request, CancellationToken cancellationToken)
 		{
 			RefugeeCamp? camp = await _context.RefugeeCamps.FindAsync([request.CampId], cancellationToken);
 			if (camp == null)
