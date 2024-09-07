@@ -6,11 +6,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DisasterManager.Services.RefugeeCampService.Queries.GetRefugeeCamp.GetRefugeeCampsByAreaId
 {
-	public class GetRefugeeCampsByAreaIdHandler(DisasterManagerDbContext context) : IRequestHandler<GetRefugeeCampsByAreaIdCommand, ResponseDTO>
+	public class GetRefugeeCampsByAreaIdHandler(DisasterManagerDbContext context) : IRequestHandler<GetRefugeeCampsByAreaIdQuery, ResponseDTO>
 	{
 		private readonly DisasterManagerDbContext _context = context;
 
-		public async Task<ResponseDTO> Handle(GetRefugeeCampsByAreaIdCommand request, CancellationToken cancellationToken)
+		public async Task<ResponseDTO> Handle(GetRefugeeCampsByAreaIdQuery request, CancellationToken cancellationToken)
 		{
 			bool areaExists = await _context.AffectedAreas.AnyAsync(area => area.AreaId == request.AreaId, cancellationToken);
 			if (!areaExists)
