@@ -1,3 +1,4 @@
+using AuthenticationAPI.Services.ValidationManager;
 using DisasterManager.Data;
 using DisasterManager.Models;
 using DisasterManager.Services.AuthenticationManager;
@@ -16,6 +17,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddScoped<IAuthenticationManager, AuthenticationManager>();
 builder.Services.AddScoped<IJwtManager, JwtManager>();
+builder.Services.AddScoped<IValidationManager, ValidationManager>();
 
 builder.Services.AddDbContext<AuthenticationDbContext>(options =>
 {
@@ -54,7 +56,6 @@ builder.Services
 
 builder.Services.AddScoped<IValidator<LoginDTO>, LoginDTOValidator>();
 builder.Services.AddScoped<IValidator<RegisterDTO>, RegisterDTOValidator>();
-
 
 var app = builder.Build();
 
