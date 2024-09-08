@@ -53,7 +53,7 @@
       "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ]
     },
     {
-      "DownstreamPathTemplate": "/refugeecamp/area",
+      "DownstreamPathTemplate": "/refugeecamp/campid",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
@@ -61,7 +61,19 @@
           "Port": 5001
         }
       ],
-      "UpstreamPathTemplate": "/refugeecamp/area",
+      "UpstreamPathTemplate": "/refugeecamp/campid",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+    {
+      "DownstreamPathTemplate": "/refugeecamp/areaid",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5001
+        }
+      ],
+      "UpstreamPathTemplate": "/refugeecamp/areaid",
       "UpstreamHttpMethod": [ "GET" ]
     }
   ],
