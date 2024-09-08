@@ -13,7 +13,7 @@ namespace AuthenticationAPI.Controller
 		private readonly IValidationManager _validateSerivce = validateService;
 
 		[Route("validate")]
-		[HttpPost]
+		[HttpGet]
 		public IActionResult ValidateToken()
 		{
 			ResponseDTO response = _validateSerivce.TokenValidated();
