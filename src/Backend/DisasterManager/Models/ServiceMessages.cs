@@ -22,11 +22,11 @@
 		}
 		public static string UpdatedRefugeeCamp(int id)
 		{
-			return $"Updated RefugeeCamo with Id: {id}";
+			return $"Updated Refugee Camp with Id: {id}";
 		}
 		public static string NoRefugeeCampFound(int id)
 		{
-			return $"No Refugee Cam with Id: {id}";
+			return $"No Refugee Camp with Id: {id}";
 		}
 	}
 }

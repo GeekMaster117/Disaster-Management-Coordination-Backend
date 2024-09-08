@@ -6,7 +6,7 @@ namespace DisasterManager.Services.RefugeeCampService.Commands.CreateRefugeeCamp
 	public class CreateRefugeeCampCommand : IRequest<ResponseDTO>
 	{
 		public int AreaId { get; set; }
-		public double latitude { get; set; }
-		public double longitude { get; set; }
+		public double Latitude { get; set; }
+		public double Longitude { get; set; }
 	}
 }

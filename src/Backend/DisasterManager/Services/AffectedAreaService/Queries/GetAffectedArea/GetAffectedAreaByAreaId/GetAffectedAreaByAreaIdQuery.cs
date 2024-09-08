@@ -4,7 +4,7 @@ using MediatR;
 
 namespace DisasterManager.Services.AffectedAreaService.Queries.GetAffectedArea.GetAffectedAreaById
 {
-    public class GetAffectedAreaByIdQuery : IRequest<ResponseDTO>
+    public class GetAffectedAreaByAreaIdQuery : IRequest<ResponseDTO>
     {
         public int AreaId { get; set; }
     }
