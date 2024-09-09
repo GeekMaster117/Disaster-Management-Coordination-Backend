@@ -3,7 +3,7 @@ using DisasterManager.Models;
 using DisasterManager.Notification;
 using Mapster;
 using MediatR;
-using Microsoft.AspNet.SignalR;
+using Microsoft.AspNetCore.SignalR;
 using Microsoft.EntityFrameworkCore;
 
 namespace DisasterManager.Services.RefugeeCampService.Commands.CreateRefugeeCamp
@@ -26,7 +26,7 @@ namespace DisasterManager.Services.RefugeeCampService.Commands.CreateRefugeeCamp
 			refugeeCamp.Area = affectedArea;
 			await _context.RefugeeCamps.AddAsync(refugeeCamp, cancellationToken);
 			await _context.SaveChangesAsync(cancellationToken);
-			await _hubContext.Clients.All.DataUpdated(cancellationToken);
+			await _hubContext.Clients.All.SendAsync(HubMethods.dataUpdated, cancellationToken);
 			return new()
 			{
 				StatusCode = DefaultMessages.Success.StatusCode,

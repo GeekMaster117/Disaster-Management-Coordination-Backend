@@ -2,7 +2,7 @@
 using DisasterManager.Data;
 using Mapster;
 using MediatR;
-using Microsoft.AspNet.SignalR;
+using Microsoft.AspNetCore.SignalR;
 using DisasterManager.Notification;
 
 namespace DisasterManager.Services.AffectedAreaService.Commands.CreateAffectedArea
@@ -17,8 +17,8 @@ namespace DisasterManager.Services.AffectedAreaService.Commands.CreateAffectedAr
             AffectedArea affectedArea = request.Adapt<AffectedArea>();
             await _context.AffectedAreas.AddAsync(affectedArea, cancellationToken);
             await _context.SaveChangesAsync(cancellationToken);
-            await _hubContext.Clients.All.DataUpdated(cancellationToken);
-            return new()
+			await _hubContext.Clients.All.SendAsync(HubMethods.dataUpdated, cancellationToken);
+			return new()
             {
                 StatusCode = DefaultMessages.Success.StatusCode,
                 Message = ServiceMessages.CreatedAffectedArea

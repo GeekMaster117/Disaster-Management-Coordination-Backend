@@ -2,7 +2,7 @@
 using DisasterManager.Models;
 using DisasterManager.Notification;
 using MediatR;
-using Microsoft.AspNet.SignalR;
+using Microsoft.AspNetCore.SignalR;
 
 namespace DisasterManager.Services.RefugeeCampService.Commands.UpdateRefugeeCamp
 {
@@ -23,7 +23,7 @@ namespace DisasterManager.Services.RefugeeCampService.Commands.UpdateRefugeeCamp
 			camp.Latitude = request.Latitude;
 			camp.Longitude = request.Longitude;
 			await _context.SaveChangesAsync(cancellationToken);
-			await _hubContext.Clients.All.DataUpdated(cancellationToken);
+			await _hubContext.Clients.All.SendAsync(HubMethods.dataUpdated, cancellationToken);
 			return new()
 			{
 				StatusCode = DefaultMessages.Success.StatusCode,

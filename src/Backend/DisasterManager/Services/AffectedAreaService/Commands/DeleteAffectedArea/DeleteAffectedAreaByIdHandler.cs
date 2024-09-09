@@ -2,7 +2,7 @@
 using DisasterManager.Models;
 using DisasterManager.Notification;
 using MediatR;
-using Microsoft.AspNet.SignalR;
+using Microsoft.AspNetCore.SignalR;
 using Microsoft.EntityFrameworkCore;
 
 namespace DisasterManager.Services.AffectedAreaService.Commands.DeleteAffectedArea
@@ -32,9 +32,9 @@ namespace DisasterManager.Services.AffectedAreaService.Commands.DeleteAffectedAr
 
             await _context.SaveChangesAsync(cancellationToken);
 
-            await _hubContext.Clients.All.DataUpdated(cancellationToken);
+			await _hubContext.Clients.All.SendAsync(HubMethods.dataUpdated, cancellationToken);
 
-            return new ResponseDTO
+			return new ResponseDTO
             {
                 StatusCode = DefaultMessages.Success.StatusCode,
                 Message = ServiceMessages.DeletedAffectedArea(request.AreaId)
