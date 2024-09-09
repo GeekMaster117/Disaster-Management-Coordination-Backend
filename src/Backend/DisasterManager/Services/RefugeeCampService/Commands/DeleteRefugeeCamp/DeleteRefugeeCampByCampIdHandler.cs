@@ -1,12 +1,15 @@
 ﻿using DisasterManager.Data;
 using DisasterManager.Models;
+using DisasterManager.Notification;
 using MediatR;
+using Microsoft.AspNet.SignalR;
 
 namespace DisasterManager.Services.RefugeeCampService.Commands.DeleteRefugeeCamp
 {
-	public class DeleteRefugeeCampByCampIdHandler(DisasterManagerDbContext context) : IRequestHandler<DeleteRefugeeCampByCampIdCommand, ResponseDTO>
+	public class DeleteRefugeeCampByCampIdHandler(DisasterManagerDbContext context, IHubContext<NotificationHub> hubContext) : IRequestHandler<DeleteRefugeeCampByCampIdCommand, ResponseDTO>
 	{
 		private readonly DisasterManagerDbContext _context = context;
+		private readonly IHubContext<NotificationHub> _hubContext = hubContext;
 
 		public async Task<ResponseDTO> Handle(DeleteRefugeeCampByCampIdCommand request, CancellationToken cancellationToken)
 		{
@@ -19,6 +22,7 @@ namespace DisasterManager.Services.RefugeeCampService.Commands.DeleteRefugeeCamp
 				};
 			_context.RefugeeCamps.Remove(camp);
 			await _context.SaveChangesAsync(cancellationToken);
+			await _hubContext.Clients.All.DataUpdated(cancellationToken);
 			return new()
 			{
 				StatusCode = DefaultMessages.Success.StatusCode,

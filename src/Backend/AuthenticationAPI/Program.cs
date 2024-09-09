@@ -1,5 +1,5 @@
+using AuthenticationAPI.Data;
 using AuthenticationAPI.Services.ValidationManager;
-using DisasterManager.Data;
 using DisasterManager.Models;
 using DisasterManager.Services.AuthenticationManager;
 using DisasterManager.Services.JwtManager;

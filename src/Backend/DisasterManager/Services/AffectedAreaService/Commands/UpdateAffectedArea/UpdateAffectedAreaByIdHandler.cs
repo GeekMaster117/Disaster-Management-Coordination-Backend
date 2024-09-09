@@ -1,18 +1,16 @@
 ﻿using DisasterManager.Data;
 using DisasterManager.Models;
+using DisasterManager.Notification;
 using MediatR;
+using Microsoft.AspNet.SignalR;
 using Microsoft.EntityFrameworkCore;
 
 namespace DisasterManager.Services.AffectedAreaService.Commands.UpdateAffectedArea
 {
-    public class UpdateAffectedAreaByIdHandler : IRequestHandler<UpdateAffectedAreaByIdCommand, ResponseDTO>
+    public class UpdateAffectedAreaByIdHandler(DisasterManagerDbContext context, IHubContext<NotificationHub> hubContext) : IRequestHandler<UpdateAffectedAreaByIdCommand, ResponseDTO>
     {
-        private readonly DisasterManagerDbContext _context;
-
-        public UpdateAffectedAreaByIdHandler(DisasterManagerDbContext context)
-        {
-            _context = context;
-        }
+        private readonly DisasterManagerDbContext _context = context;
+        private readonly IHubContext<NotificationHub> _hubContext = hubContext;
 
         public async Task<ResponseDTO> Handle(UpdateAffectedAreaByIdCommand request, CancellationToken cancellationToken)
         {
@@ -34,6 +32,8 @@ namespace DisasterManager.Services.AffectedAreaService.Commands.UpdateAffectedAr
             affectedArea.Severity = request.Severity;
 
             await _context.SaveChangesAsync(cancellationToken);
+
+            await _hubContext.Clients.All.DataUpdated(cancellationToken);
 
             return new ResponseDTO
             {

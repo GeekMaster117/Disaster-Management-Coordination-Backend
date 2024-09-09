@@ -1,18 +1,16 @@
 ﻿using DisasterManager.Data;
 using DisasterManager.Models;
+using DisasterManager.Notification;
 using MediatR;
+using Microsoft.AspNet.SignalR;
 using Microsoft.EntityFrameworkCore;
 
 namespace DisasterManager.Services.AffectedAreaService.Commands.DeleteAffectedArea
 {
-    public class DeleteAffectedAreaByIdHandler : IRequestHandler<DeleteAffectedAreaByIdCommand, ResponseDTO>
+    public class DeleteAffectedAreaByIdHandler(DisasterManagerDbContext context, IHubContext<NotificationHub> hubContext) : IRequestHandler<DeleteAffectedAreaByIdCommand, ResponseDTO>
     {
-        private readonly DisasterManagerDbContext _context;
-
-        public DeleteAffectedAreaByIdHandler(DisasterManagerDbContext context)
-        {
-            _context = context;
-        }
+        private readonly DisasterManagerDbContext _context = context;
+        private readonly IHubContext<NotificationHub> _hubContext = hubContext;
 
         public async Task<ResponseDTO> Handle(DeleteAffectedAreaByIdCommand request, CancellationToken cancellationToken)
         {
@@ -33,6 +31,8 @@ namespace DisasterManager.Services.AffectedAreaService.Commands.DeleteAffectedAr
             _context.RefugeeCamps.RemoveRange(camps);
 
             await _context.SaveChangesAsync(cancellationToken);
+
+            await _hubContext.Clients.All.DataUpdated(cancellationToken);
 
             return new ResponseDTO
             {

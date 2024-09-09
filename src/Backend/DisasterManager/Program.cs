@@ -1,5 +1,6 @@
 using Carter;
 using DisasterManager.Data;
+using DisasterManager.Notification;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -43,6 +44,8 @@ builder.Services.AddAuthentication(options =>
 	};
 });
 
+builder.Services.AddSignalR();
+
 builder.Services.AddAuthorization();
 builder.Services.AddCors();
 
@@ -58,6 +61,8 @@ app.UseCors(configuration =>
 
 app.UseAuthentication();
 app.UseAuthorization();
+
+app.MapHub<NotificationHub>("/notificationhub");
 
 app.MapCarter();
 
