@@ -13,7 +13,6 @@ namespace DisasterManager.Services.RefugeeCampService.Commands.DeleteRefugeeCamp
 {
     public class DeleteRefugeeCampByCampIdEndpoint : ICarterModule
     {
-		[Authorize(Roles = UserRoles.Admin)]
 		public void AddRoutes(IEndpointRouteBuilder app)
         {
             app.MapDelete("/refugeecamp", async ([FromBody] DeleteRefugeeCampByCampIdCommand command, IMediator mediator) =>
@@ -26,7 +25,8 @@ namespace DisasterManager.Services.RefugeeCampService.Commands.DeleteRefugeeCamp
                     Encoding.UTF8,
                     response.StatusCode
                 );
-            });
+            })
+			.RequireAuthorization(policy => policy.RequireRole(UserRoles.Admin));
         }
     }
 }

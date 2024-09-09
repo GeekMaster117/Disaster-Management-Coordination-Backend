@@ -13,7 +13,6 @@ namespace DisasterManager.Services.AffectedAreaService.Commands.UpdateAffectedAr
 {
     public class UpdateAffectedAreaByIdEndpoint : ICarterModule
     {
-		[Authorize(Roles = UserRoles.Admin)]
 		public void AddRoutes(IEndpointRouteBuilder app)
         {
             app.MapPut("/affectedarea", async ([FromBody] UpdateAffectedAreaByIdCommand command, IMediator mediator) =>
@@ -26,7 +25,8 @@ namespace DisasterManager.Services.AffectedAreaService.Commands.UpdateAffectedAr
                     Encoding.UTF8,
                     response.StatusCode
                 );
-            });
+            })
+			.RequireAuthorization(policy => policy.RequireRole(UserRoles.Admin));
         }
     }
 }

@@ -13,7 +13,6 @@ namespace DisasterManager.Services.RefugeeCampService.Commands.UpdateRefugeeCamp
 {
     public class UpdateRefugeeCampByCampIdEndpoint : ICarterModule
     {
-		[Authorize(Roles = UserRoles.Admin)]
 		public void AddRoutes(IEndpointRouteBuilder app)
         {
             app.MapPut("/refugeecamp", async ([FromBody] UpdateRefugeeCampByCampIdCommand command, IMediator mediator) =>
@@ -26,7 +25,8 @@ namespace DisasterManager.Services.RefugeeCampService.Commands.UpdateRefugeeCamp
                     Encoding.UTF8,
                     response.StatusCode
                 );
-            });
+            })
+			.RequireAuthorization(policy => policy.RequireRole(UserRoles.Admin));
         }
     }
 }

@@ -13,7 +13,6 @@ namespace DisasterManager.Services.AffectedAreaService.Commands.DeleteAffectedAr
 {
     public class DeleteAffectedAreaByIdEndpoint : ICarterModule
     {
-		[Authorize(Roles = UserRoles.Admin)]
 		public void AddRoutes(IEndpointRouteBuilder app)
         {
             app.MapDelete("/affectedarea", async ([FromBody] DeleteAffectedAreaByIdCommand command, IMediator mediator) =>
@@ -26,7 +25,8 @@ namespace DisasterManager.Services.AffectedAreaService.Commands.DeleteAffectedAr
                     Encoding.UTF8,
                     response.StatusCode
                 );
-            });
+            })
+			.RequireAuthorization(policy => policy.RequireRole(UserRoles.Admin));
         }
     }
 }
