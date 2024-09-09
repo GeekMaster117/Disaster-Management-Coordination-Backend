@@ -1,6 +1,8 @@
 ﻿using Carter;
+using DisasterManager.Models;
 using DisasterManager.Services.RefugeeCampService.Commands.DeleteRefugeeCamp;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -11,7 +13,8 @@ namespace DisasterManager.Services.RefugeeCampService.Commands.DeleteRefugeeCamp
 {
     public class DeleteRefugeeCampByCampIdEndpoint : ICarterModule
     {
-        public void AddRoutes(IEndpointRouteBuilder app)
+		[Authorize(Roles = UserRoles.Admin)]
+		public void AddRoutes(IEndpointRouteBuilder app)
         {
             app.MapDelete("/refugeecamp", async ([FromBody] DeleteRefugeeCampByCampIdCommand command, IMediator mediator) =>
             {

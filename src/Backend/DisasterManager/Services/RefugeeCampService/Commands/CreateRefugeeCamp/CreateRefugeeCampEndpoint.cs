@@ -1,6 +1,8 @@
 ﻿using Carter;
+using DisasterManager.Models;
 using DisasterManager.Services.AffectedAreaService.Commands.CreateAffectedArea;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Text;
 using System.Text.Json;
@@ -9,6 +11,7 @@ namespace DisasterManager.Services.RefugeeCampService.Commands.CreateRefugeeCamp
 {
 	public class CreateRefugeeCampEndpoint : ICarterModule
 	{
+		[Authorize(Roles = UserRoles.Admin)]
 		public void AddRoutes(IEndpointRouteBuilder app)
 		{
 			app.MapPost("/refugeecamp", async ([FromBody] CreateRefugeeCampCommand command, IMediator mediator) =>

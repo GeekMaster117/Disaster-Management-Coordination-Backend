@@ -6,12 +6,14 @@ using DisasterManager.Models;
 using Microsoft.AspNetCore.Mvc;
 using Carter;
 using System.Text.Json;
+using Microsoft.AspNetCore.Authorization;
 
 namespace DisasterManager.Services.AffectedAreaService.Commands.CreateAffectedArea
 {
     public class CreateAffectedAreaEndpoint : ICarterModule
     {
-        public void AddRoutes(IEndpointRouteBuilder app)
+		[Authorize(Roles = UserRoles.Admin)]
+		public void AddRoutes(IEndpointRouteBuilder app)
         {
             app.MapPost("/affectedarea", async ([FromBody] CreateAffectedAreaCommand command, IMediator mediator) =>
             {

@@ -2,6 +2,7 @@
 using DisasterManager.Models;
 using DisasterManager.Services.AffectedAreaService.Commands.UpdateAffectedArea;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -12,7 +13,8 @@ namespace DisasterManager.Services.AffectedAreaService.Commands.UpdateAffectedAr
 {
     public class UpdateAffectedAreaByIdEndpoint : ICarterModule
     {
-        public void AddRoutes(IEndpointRouteBuilder app)
+		[Authorize(Roles = UserRoles.Admin)]
+		public void AddRoutes(IEndpointRouteBuilder app)
         {
             app.MapPut("/affectedarea", async ([FromBody] UpdateAffectedAreaByIdCommand command, IMediator mediator) =>
             {

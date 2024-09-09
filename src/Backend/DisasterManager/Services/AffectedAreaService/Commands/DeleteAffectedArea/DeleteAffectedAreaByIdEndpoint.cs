@@ -2,6 +2,7 @@
 using DisasterManager.Models;
 using DisasterManager.Services.AffectedAreaService.Commands.DeleteAffectedArea;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -12,7 +13,8 @@ namespace DisasterManager.Services.AffectedAreaService.Commands.DeleteAffectedAr
 {
     public class DeleteAffectedAreaByIdEndpoint : ICarterModule
     {
-        public void AddRoutes(IEndpointRouteBuilder app)
+		[Authorize(Roles = UserRoles.Admin)]
+		public void AddRoutes(IEndpointRouteBuilder app)
         {
             app.MapDelete("/affectedarea", async ([FromBody] DeleteAffectedAreaByIdCommand command, IMediator mediator) =>
             {
