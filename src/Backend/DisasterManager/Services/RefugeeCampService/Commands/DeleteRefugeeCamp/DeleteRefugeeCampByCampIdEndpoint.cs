@@ -17,10 +17,15 @@ namespace DisasterManager.Services.RefugeeCampService.Commands.DeleteRefugeeCamp
         {
             app.MapDelete("/refugeecamp", async ([FromBody] DeleteRefugeeCampByCampIdCommand command, IMediator mediator) =>
             {
-                var response = await mediator.Send(command);
+				JsonSerializerOptions options = new JsonSerializerOptions
+				{
+					PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+				};
+
+				var response = await mediator.Send(command);
 
                 return Results.Content(
-                    JsonSerializer.Serialize(response),
+                    JsonSerializer.Serialize(response, options),
                     "application/json",
                     Encoding.UTF8,
                     response.StatusCode

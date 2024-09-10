@@ -15,13 +15,17 @@ namespace DisasterManager.Services.RefugeeCampService.Queries.GetRefugeeCamp.Get
         {
             app.MapGet("/refugeecamp/camp/{id}", async ([FromRoute] int id, IMediator mediator) =>
             {
-                var response = await mediator.Send(new GetRefugeeCampByCampIdQuery()
+				JsonSerializerOptions options = new JsonSerializerOptions
+				{
+					PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+				};
+				var response = await mediator.Send(new GetRefugeeCampByCampIdQuery()
                 {
                     CampId = id
                 });
 
                 return Results.Content(
-                    JsonSerializer.Serialize(response),
+                    JsonSerializer.Serialize(response, options),
                     "application/json",
                     Encoding.UTF8,
                     response.StatusCode

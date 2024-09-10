@@ -14,14 +14,18 @@ namespace DisasterManager.Services.RefugeeCampService.Queries.GetRefugeeCamp.Get
     {
         public void AddRoutes(IEndpointRouteBuilder app)
         {
-            app.MapGet("/refugeecamp/area/{id}", async ([FromRoute] int id, IMediator mediator) =>
+			JsonSerializerOptions options = new JsonSerializerOptions
+			{
+				PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+			};
+			app.MapGet("/refugeecamp/area/{id}", async ([FromRoute] int id, IMediator mediator) =>
             {
                 var response = await mediator.Send(new GetRefugeeCampsByAreaIdQuery()
                 {
                     AreaId = id
                 });
                 return Results.Content(
-                    JsonSerializer.Serialize(response),
+                    JsonSerializer.Serialize(response, options),
                     "application/json",
                     Encoding.UTF8,
                     response.StatusCode

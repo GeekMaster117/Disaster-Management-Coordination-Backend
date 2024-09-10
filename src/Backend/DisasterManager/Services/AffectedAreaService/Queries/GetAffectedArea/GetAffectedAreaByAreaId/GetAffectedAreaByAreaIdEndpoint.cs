@@ -16,12 +16,16 @@ namespace DisasterManager.Services.AffectedAreaService.Queries.GetAffectedArea.G
 		{
 			app.MapGet("/affectedarea/{id}", async ([FromRoute] int id, IMediator mediator) =>
 			{
+				JsonSerializerOptions options = new JsonSerializerOptions
+				{
+					PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+				};
 				var response = await mediator.Send(new GetAffectedAreaByAreaIdQuery()
 				{
 					AreaId = id
 				});
 				return Results.Content(
-					JsonSerializer.Serialize(response),
+					JsonSerializer.Serialize(response, options),
 					"application/json",
 					Encoding.UTF8,
 					response.StatusCode
