@@ -54,7 +54,7 @@
       "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ]
     },
     {
-      "DownstreamPathTemplate": "/refugeecamp",
+      "DownstreamPathTemplate": "/refugeecamp/{id}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
@@ -62,7 +62,7 @@
           "Port": 5001
         }
       ],
-      "UpstreamPathTemplate": "/refugeecamp",
+      "UpstreamPathTemplate": "/refugeecamp/{id}",
       "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ]
     },
     {
