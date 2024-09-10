@@ -29,6 +29,19 @@
 
     },
     {
+      "DownstreamPathTemplate": "/validate",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5000
+        }
+
+      ],
+      "UpstreamPathTemplate": "/validate",
+      "UpstreamHttpMethod": [ "Get" ]
+    }
+    {
       "DownstreamPathTemplate": "/affectedarea",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
