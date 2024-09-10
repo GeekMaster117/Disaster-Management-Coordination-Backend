@@ -40,7 +40,7 @@
       ],
       "UpstreamPathTemplate": "/validate",
       "UpstreamHttpMethod": [ "Get" ]
-    }
+    },
     {
       "DownstreamPathTemplate": "/affectedarea",
       "DownstreamScheme": "http",
