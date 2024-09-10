@@ -42,7 +42,7 @@
       "UpstreamHttpMethod": [ "Get" ]
     },
     {
-      "DownstreamPathTemplate": "/affectedarea",
+      "DownstreamPathTemplate": "/affectedarea/{id}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
@@ -50,7 +50,7 @@
           "Port": 5001
         }
       ],
-      "UpstreamPathTemplate": "/affectedarea",
+      "UpstreamPathTemplate": "/affectedarea/{id}",
       "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ]
     },
     {
@@ -66,7 +66,7 @@
       "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ]
     },
     {
-      "DownstreamPathTemplate": "/refugeecamp/campid",
+      "DownstreamPathTemplate": "/refugeecamp/campid/{id}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
@@ -74,11 +74,11 @@
           "Port": 5001
         }
       ],
-      "UpstreamPathTemplate": "/refugeecamp/campid",
+      "UpstreamPathTemplate": "/refugeecamp/campid/{id}",
       "UpstreamHttpMethod": [ "GET" ]
     },
     {
-      "DownstreamPathTemplate": "/refugeecamp/areaid",
+      "DownstreamPathTemplate": "/refugeecamp/areaid/{id}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
@@ -86,7 +86,7 @@
           "Port": 5001
         }
       ],
-      "UpstreamPathTemplate": "/refugeecamp/areaid",
+      "UpstreamPathTemplate": "/refugeecamp/areaid/{id}",
       "UpstreamHttpMethod": [ "GET" ]
     },
     {

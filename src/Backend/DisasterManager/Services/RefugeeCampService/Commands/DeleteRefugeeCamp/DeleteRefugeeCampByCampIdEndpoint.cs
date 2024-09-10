@@ -15,14 +15,17 @@ namespace DisasterManager.Services.RefugeeCampService.Commands.DeleteRefugeeCamp
     {
 		public void AddRoutes(IEndpointRouteBuilder app)
         {
-            app.MapDelete("/refugeecamp", async ([FromBody] DeleteRefugeeCampByCampIdCommand command, IMediator mediator) =>
+            app.MapDelete("/refugeecamp/{id}", async ([FromRoute] int id, IMediator mediator) =>
             {
 				JsonSerializerOptions options = new JsonSerializerOptions
 				{
 					PropertyNamingPolicy = JsonNamingPolicy.CamelCase
 				};
 
-				var response = await mediator.Send(command);
+				var response = await mediator.Send(new DeleteRefugeeCampByCampIdCommand()
+                {
+                    CampId = id
+                });
 
                 return Results.Content(
                     JsonSerializer.Serialize(response, options),

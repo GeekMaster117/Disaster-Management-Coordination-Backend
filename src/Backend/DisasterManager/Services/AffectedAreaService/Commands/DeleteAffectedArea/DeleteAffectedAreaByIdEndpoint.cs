@@ -15,14 +15,17 @@ namespace DisasterManager.Services.AffectedAreaService.Commands.DeleteAffectedAr
     {
 		public void AddRoutes(IEndpointRouteBuilder app)
         {
-            app.MapDelete("/affectedarea", async ([FromBody] DeleteAffectedAreaByIdCommand command, IMediator mediator) =>
+            app.MapDelete("/affectedarea/{id}", async ([FromRoute] int id, IMediator mediator) =>
             {
 				JsonSerializerOptions options = new JsonSerializerOptions
 				{
 					PropertyNamingPolicy = JsonNamingPolicy.CamelCase
 				};
 
-				var response = await mediator.Send(command);
+				var response = await mediator.Send(new DeleteAffectedAreaByIdCommand()
+                {
+                    AreaId = id
+                });
 
                 return Results.Content(
                     JsonSerializer.Serialize(response, options),
